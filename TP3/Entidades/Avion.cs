@@ -29,11 +29,11 @@ namespace Entidades
         public Dictionary<int, Pasajero> Pasajeros { get => pasajeros; set => pasajeros = value ; }
         
         public EDestino Destino { get => destino; set => destino = value; }
+
         #endregion
 
         #region Constructores
 
-        
         public Avion()
         {
             pasajeros = new Dictionary<int, Pasajero>();
@@ -47,5 +47,7 @@ namespace Entidades
         }
         
         #endregion
+
+
     }
 }

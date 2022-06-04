@@ -7,29 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Entidades;
 
 namespace FormApp
 {
     public partial class Inicio : Form
     {
+        
         public Inicio()
         {
             InitializeComponent();
         }
 
-        private void btn_User_Click(object sender, EventArgs e)
+        public void LoadForm(object form)
         {
-            IngresoUsuario user = new IngresoUsuario();
-            Hide();
-            user.Show();
+            if(panelMain.Controls.Count > 0)
+            {
+                
+            }
+
+            Form f = form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(f);
+            panelMain.Tag = f;
+            f.Show();
         }
 
-        private void btn_Admin_Click(object sender, EventArgs e)
+        private void btn_CargarPasajero_Click(object sender, EventArgs e)
         {
-            IngresoAdmin admin = new IngresoAdmin();
-            Hide();
-            admin.Show();
+            LoadForm(new CargarPasajeroForm());
+        }
+
+        private void btn_Cerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

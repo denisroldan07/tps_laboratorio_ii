@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\denis\\.nuget\\packages\\": {}
+    "C:\\Users\\Denis\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\denis\\source\\repos\\Roldan.Denis.2A\\Archivos\\Archivos.csproj",
+      "projectUniqueName": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj",
       "projectName": "Archivos",
-      "projectPath": "C:\\Users\\denis\\source\\repos\\Roldan.Denis.2A\\Archivos\\Archivos.csproj",
-      "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\denis\\source\\repos\\Roldan.Denis.2A\\Archivos\\obj\\",
+      "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj",
+      "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
       }
     }
   }

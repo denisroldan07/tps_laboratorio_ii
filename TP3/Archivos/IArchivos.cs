@@ -11,5 +11,7 @@ namespace Archivos
         bool Save(string file, T data);
 
         bool Read(string file, out T data);
+
+        
     }
 }
