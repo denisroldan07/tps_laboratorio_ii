@@ -49,7 +49,6 @@ namespace Entidades
         {
             return $"Pasajero: {Nombre} {Apellido} , DNI: {Dni}";
         }
-
         #endregion
     }
 }

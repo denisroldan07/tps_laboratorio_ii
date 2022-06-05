@@ -101,14 +101,14 @@ namespace FormApp
                         var apellido = txtBox_Apellido.Text;
                         long dni = long.Parse(txtBox_DNI.Text);
 
-                        if(ChequearPasajeroRepetido(idVuelo,dni))
+                        Pasajero pasajero = new Pasajero(nombre, apellido, dni);
+
+                        if (ChequearPasajeroRepetido(idVuelo,pasajero))
                         {
                             MessageBox.Show("El pasajero que quiere ingresar ya esta en el avión");
                         }
                         else
                         {
-                            Pasajero pasajero = new Pasajero(nombre, apellido, dni);
-
                             if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
                             {
                                 MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !");
@@ -153,7 +153,7 @@ namespace FormApp
             return ans;
         }
         
-        private bool ChequearPasajeroRepetido(int idVuelo,long dni)
+        private bool ChequearPasajeroRepetido(int idVuelo,Pasajero pasajero)
         {
             bool ans = false;
             for (int i = 0; i < 4; i++)
@@ -167,7 +167,7 @@ namespace FormApp
                         {
                             continue;
                         }
-                        if (pasajeroDni.Value.Dni == dni)
+                        if (pasajeroDni.Value.Dni == pasajero.Dni)
                         {
                             ans = true;
                             return ans;
@@ -214,22 +214,14 @@ namespace FormApp
 
         private void GenerarInformacionDeVuelo(Avion avion , ListBox listBox, int id)
         {
-            try
-            {
-                int count = 0;
-                listBox.Items.Add($"Vuelo: {avion.Id}");
-                listBox.Items.Add($"Destino: {avion.Destino}");
-                count = MostrarEspacioEnAvion(avion, listBox, count);
-
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
+           listBox.Items.Add($"Vuelo: {avion.Id}");
+           listBox.Items.Add($"Destino: {avion.Destino}");
+           MostrarEspacioEnAvion(avion, listBox);
         }
 
-        private static int MostrarEspacioEnAvion(Avion avion, ListBox listBox, int count)
+        private static void MostrarEspacioEnAvion(Avion avion, ListBox listBox)
         {
+            int count = 0;
             foreach (KeyValuePair<int, Pasajero> asiento in avion.Pasajeros)
             {
                 if (asiento.Value != null)
@@ -246,8 +238,6 @@ namespace FormApp
             {
                 listBox.Items.Add($"Asientos: {4 - count}");
             }
-
-            return count;
         }
 
         private void ChequearDisponibilidadDeAsientos(int id)

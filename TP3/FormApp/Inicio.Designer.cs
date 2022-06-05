@@ -141,7 +141,7 @@ namespace FormApp
             this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Cerrar.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_Cerrar.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_Cerrar.Location = new System.Drawing.Point(746, 0);
+            this.btn_Cerrar.Location = new System.Drawing.Point(747, 0);
             this.btn_Cerrar.Name = "btn_Cerrar";
             this.btn_Cerrar.Size = new System.Drawing.Size(30, 30);
             this.btn_Cerrar.TabIndex = 3;

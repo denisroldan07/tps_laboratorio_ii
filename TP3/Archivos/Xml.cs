@@ -12,7 +12,7 @@ namespace Archivos
 
         public Xml()
         {
-            folder = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, @"\PasajerosDb");
+            folder = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, @"\VuelosDb");
         }
 
         public bool Save(string file,T data)

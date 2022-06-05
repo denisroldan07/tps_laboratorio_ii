@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Archivos;
 
 namespace Entidades
 {
@@ -33,7 +30,7 @@ namespace Entidades
         #endregion
 
         #region Constructores
-
+      
         public Avion()
         {
             pasajeros = new Dictionary<int, Pasajero>();
@@ -45,8 +42,10 @@ namespace Entidades
             Pasajeros = pasajeros;
             Destino = destino;
         }
-        
+
         #endregion
+
+
 
 
     }

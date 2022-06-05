@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Archivos;
+using Entidades;
+
 
 namespace FormApp
 {
@@ -35,7 +38,9 @@ namespace FormApp
 
         private void btn_CargarPasajero_Click(object sender, EventArgs e)
         {
+        
             LoadForm(new CargarPasajeroForm());
+
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj": {}
+    "C:\\Users\\denis\\source\\repos\\TP3\\Entidades\\Entidades.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj": {
+    "C:\\Users\\denis\\source\\repos\\TP3\\Archivos\\Archivos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj",
+        "projectUniqueName": "C:\\Users\\denis\\source\\repos\\TP3\\Archivos\\Archivos.csproj",
         "projectName": "Archivos",
-        "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj",
-        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\obj\\",
+        "projectPath": "C:\\Users\\denis\\source\\repos\\TP3\\Archivos\\Archivos.csproj",
+        "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\denis\\source\\repos\\TP3\\Archivos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,21 +55,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj": {
+    "C:\\Users\\denis\\source\\repos\\TP3\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "C:\\Users\\denis\\source\\repos\\TP3\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj",
-        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\obj\\",
+        "projectPath": "C:\\Users\\denis\\source\\repos\\TP3\\Entidades\\Entidades.csproj",
+        "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\denis\\source\\repos\\TP3\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,8 +84,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj": {
-                "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj"
+              "C:\\Users\\denis\\source\\repos\\TP3\\Archivos\\Archivos.csproj": {
+                "projectPath": "C:\\Users\\denis\\source\\repos\\TP3\\Archivos\\Archivos.csproj"
               }
             }
           }
@@ -114,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
