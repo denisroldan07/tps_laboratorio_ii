@@ -14,7 +14,7 @@ namespace Archivos
 
         public Json()
         {
-            folder = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, @"\VuelosDb");
+            folder = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, @"VuelosDb");
         }
 
         public bool Save(string file, T data)
@@ -26,7 +26,7 @@ namespace Archivos
                     Directory.CreateDirectory(folder);
                 }
 
-                file = Path.Combine(folder, file);
+                file = folder + file;
 
                 string jsonObject = JsonSerializer.Serialize(data);
                 File.WriteAllText(file, jsonObject);
@@ -47,9 +47,10 @@ namespace Archivos
                     Directory.CreateDirectory(folder);
                 }
 
-                file = Path.Combine(folder, file);
-               
-                data = JsonSerializer.Deserialize<T>(file);
+                file = folder + file;
+                string jsonObject = File.ReadAllText(file);
+
+                data = JsonSerializer.Deserialize<T>(jsonObject);
 
                 return true;
             }

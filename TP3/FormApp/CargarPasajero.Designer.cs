@@ -68,6 +68,7 @@ namespace FormApp
             this.btn_ReservarLugar2.TabIndex = 5;
             this.btn_ReservarLugar2.Text = "Reservar lugar";
             this.btn_ReservarLugar2.UseVisualStyleBackColor = true;
+            this.btn_ReservarLugar2.Click += new System.EventHandler(this.btn_ReservarLugar2_Click);
             // 
             // btn_ReservarLugar3
             // 
@@ -77,6 +78,7 @@ namespace FormApp
             this.btn_ReservarLugar3.TabIndex = 6;
             this.btn_ReservarLugar3.Text = "Reservar lugar";
             this.btn_ReservarLugar3.UseVisualStyleBackColor = true;
+            this.btn_ReservarLugar3.Click += new System.EventHandler(this.btn_ReservarLugar3_Click);
             // 
             // btn_ReservarLugar4
             // 
@@ -86,6 +88,7 @@ namespace FormApp
             this.btn_ReservarLugar4.TabIndex = 7;
             this.btn_ReservarLugar4.Text = "Reservar lugar";
             this.btn_ReservarLugar4.UseVisualStyleBackColor = true;
+            this.btn_ReservarLugar4.Click += new System.EventHandler(this.btn_ReservarLugar4_Click);
             // 
             // lstBox_Avion1
             // 

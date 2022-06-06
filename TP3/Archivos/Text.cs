@@ -13,7 +13,7 @@ namespace Archivos
 
         public Text()
         {
-            folder = string.Format("{0}{1}",AppDomain.CurrentDomain.BaseDirectory, @"\LogErrores");
+            folder = string.Format("{0}{1}",AppDomain.CurrentDomain.BaseDirectory, @"\Texto");
         }
 
         public bool Save(string file,string data)

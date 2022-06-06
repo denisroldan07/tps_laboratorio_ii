@@ -38,6 +38,7 @@ namespace FormApp
             this.panelHeader = new System.Windows.Forms.Panel();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.btn_Salir = new System.Windows.Forms.Button();
             this.panelSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -46,6 +47,7 @@ namespace FormApp
             // panelSide
             // 
             this.panelSide.BackColor = System.Drawing.Color.DimGray;
+            this.panelSide.Controls.Add(this.btn_Salir);
             this.panelSide.Controls.Add(this.btn_EliminarPasajero);
             this.panelSide.Controls.Add(this.pictureBox1);
             this.panelSide.Controls.Add(this.btn_ModificarPasajero);
@@ -70,6 +72,7 @@ namespace FormApp
             this.btn_EliminarPasajero.TabIndex = 3;
             this.btn_EliminarPasajero.Text = "Borrar pasajero";
             this.btn_EliminarPasajero.UseVisualStyleBackColor = true;
+            this.btn_EliminarPasajero.Click += new System.EventHandler(this.btn_EliminarPasajero_Click);
             // 
             // pictureBox1
             // 
@@ -94,6 +97,7 @@ namespace FormApp
             this.btn_ModificarPasajero.TabIndex = 2;
             this.btn_ModificarPasajero.Text = "Modificar pasajero\r\n";
             this.btn_ModificarPasajero.UseVisualStyleBackColor = true;
+            this.btn_ModificarPasajero.Click += new System.EventHandler(this.btn_ModificarPasajero_Click);
             // 
             // btn_BuscarPasajero
             // 
@@ -108,6 +112,7 @@ namespace FormApp
             this.btn_BuscarPasajero.TabIndex = 1;
             this.btn_BuscarPasajero.Text = "Buscar pasajero";
             this.btn_BuscarPasajero.UseVisualStyleBackColor = true;
+            this.btn_BuscarPasajero.Click += new System.EventHandler(this.btn_BuscarPasajero_Click);
             // 
             // btn_CargarPasajero
             // 
@@ -157,6 +162,21 @@ namespace FormApp
             this.panelMain.Size = new System.Drawing.Size(557, 425);
             this.panelMain.TabIndex = 2;
             // 
+            // btn_Salir
+            // 
+            this.btn_Salir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_Salir.FlatAppearance.BorderSize = 0;
+            this.btn_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Salir.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_Salir.ForeColor = System.Drawing.Color.White;
+            this.btn_Salir.Location = new System.Drawing.Point(0, 382);
+            this.btn_Salir.Name = "btn_Salir";
+            this.btn_Salir.Size = new System.Drawing.Size(220, 40);
+            this.btn_Salir.TabIndex = 4;
+            this.btn_Salir.Text = "Salir";
+            this.btn_Salir.UseVisualStyleBackColor = true;
+            this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -187,6 +207,7 @@ namespace FormApp
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.Button btn_EliminarPasajero;
+        private System.Windows.Forms.Button btn_Salir;
     }
 }
 

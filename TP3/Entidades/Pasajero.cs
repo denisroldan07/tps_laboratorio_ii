@@ -47,7 +47,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"Pasajero: {Nombre} {Apellido} , DNI: {Dni}";
+            return $"Pasajero: {Nombre} {Apellido} \nDNI: {Dni}";
         }
         #endregion
     }

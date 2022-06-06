@@ -30,24 +30,28 @@ namespace FormApp
             ChequearDisponibilidadDeAsientos(idVuelo);
             MostrarBotonesDeAsientos();
         }
-        private void btn_ReservarLugar2_Click(object sender, System.EventArgs e)
+
+        private void btn_ReservarLugar2_Click(object sender, EventArgs e)
         {
             idVuelo = 2;
             ChequearDisponibilidadDeAsientos(idVuelo);
             MostrarBotonesDeAsientos();
         }
-        private void btn_ReservarLugar3_Click(object sender, System.EventArgs e)
+
+        private void btn_ReservarLugar3_Click(object sender, EventArgs e)
         {
             idVuelo = 3;
             ChequearDisponibilidadDeAsientos(idVuelo);
             MostrarBotonesDeAsientos();
         }
-        private void btn_ReservarLugar4_Click(object sender, System.EventArgs e)
+
+        private void btn_ReservarLugar4_Click(object sender, EventArgs e)
         {
             idVuelo = 4;
             ChequearDisponibilidadDeAsientos(idVuelo);
             MostrarBotonesDeAsientos();
         }
+
 
         private void btn_Asiento1_Click(object sender, System.EventArgs e)
         {
@@ -81,19 +85,25 @@ namespace FormApp
         }
 
         #region CargarPasajeroAux
+
+        /// <summary>
+        /// Funcion que carga un pasajero en el avion correspondiente , primero chequea que los datos del formulario esten bien puestos , luego se fija si no esta repetido y por ultimo busca el asiento correspondiente con el id y agrega el pasajero
+        /// </summary>
+        /// <param name="idAsiento">Parametro para poder ubicar en el diccionario al nuevo pasajero</param>
+        /// <param name="idVuelo">Parametro para poder ubicar en la clase estatica el vuelo correspondiente</param>
         private void CargarPasajero(int idAsiento, int idVuelo)
         {
             try
             {
                 if (string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text) || string.IsNullOrEmpty(txtBox_DNI.Text))
                 {
-                    MessageBox.Show("Debe completar todos los campos del formulario");
+                    MessageBox.Show("Debe completar todos los campos del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || (!long.TryParse(txtBox_DNI.Text, out _) && (txtBox_DNI.Text.Length == 7 || txtBox_DNI.Text.Length == 8)))
                     {
-                        MessageBox.Show("Hay errores en la carga del formulario");
+                        MessageBox.Show("Hay errores en la carga del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -111,7 +121,8 @@ namespace FormApp
                         {
                             if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
                             {
-                                MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !");
+                                MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
                             }
                             else
                             {
@@ -123,69 +134,41 @@ namespace FormApp
             }
             catch (System.Exception ex)
             {
-                new Text().Save("logError.txt",LogError(ex));
-                MessageBox.Show("Hay errores en la carga del formulario");
+                new Text().Save("logError.txt",LogErrors.LogError(ex,"CargarPasajero"));
+                MessageBox.Show("Hay errores en la carga del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
         private bool AsignarAsientoAlPasajero(int idAsiento, int idVuelo, Pasajero pasajero)
         {
-            bool ans = false;
-
             for (int i = 0; i < 4; i++)
             {
                 Avion avionAux = Vuelos.vuelos[i];
-                if (avionAux.Id == idVuelo)
+                if(Avion.BuscarAsiento(idAsiento,idVuelo,avionAux))
                 {
-                    foreach (var asiento in avionAux.Pasajeros)
-                    {
-                        if (asiento.Key == idAsiento)
-                        {
-                            Vuelos.vuelos[i].Pasajeros.Remove(idAsiento);
-                            Vuelos.vuelos[i].Pasajeros.Add(idAsiento, pasajero);
-                            ans = true;
-                            break;
-                        }
-                    }
+                    Vuelos.vuelos[i].Pasajeros.Add(idAsiento, pasajero);
+                    return true;
                 }
             }
-
-            return ans;
+            
+            return false;
         }
         
         private bool ChequearPasajeroRepetido(int idVuelo,Pasajero pasajero)
         {
-            bool ans = false;
             for (int i = 0; i < 4; i++)
             {
                 Avion avionAux = Vuelos.vuelos[i];
-                if (avionAux.Id == idVuelo)
+                if(Avion.BuscarPasajeroEnAvion(pasajero.Dni, idVuelo, avionAux,out _))
                 {
-                    foreach (var pasajeroDni in avionAux.Pasajeros)
-                    {
-                        if(pasajeroDni.Value == null)
-                        {
-                            continue;
-                        }
-                        if (pasajeroDni.Value.Dni == pasajero.Dni)
-                        {
-                            ans = true;
-                            return ans;
-                        }
-                    }
+                    return true;
                 }
             }
 
-            return ans;
+            return false;
         }
         #endregion
-        public static string LogError(Exception ex)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"\nDate: {DateTime.Now}");
-            sb.AppendLine($"\nError: {ex.Message}");
-            return sb.ToString();
-        }
+
 
         #region AuxiliaresInterface
         private void GenerarInterfaceForm()
@@ -195,21 +178,25 @@ namespace FormApp
             lstBox_Avion3.Items.Clear();
             lstBox_Avion4.Items.Clear();
             OcultarBotones();
-            
-            Avion avion1 = Vuelos.ObtenerAvion(1);
-            Avion avion2 = Vuelos.ObtenerAvion(2);
-            Avion avion3 = Vuelos.ObtenerAvion(3);
-            Avion avion4 = Vuelos.ObtenerAvion(4);
-            
-            GenerarInformacionDeVuelo(avion1,lstBox_Avion1,1);
-            GenerarInformacionDeVuelo(avion2,lstBox_Avion2,2);
-            GenerarInformacionDeVuelo(avion3,lstBox_Avion3,3);
-            GenerarInformacionDeVuelo(avion4,lstBox_Avion4,4);
-            
-            ChequearLugarDisponible(avion1);
-            ChequearLugarDisponible(avion2);
-            ChequearLugarDisponible(avion3);
-            ChequearLugarDisponible(avion4);
+
+            if (Vuelos.vuelos == null)
+            {
+                MessageBox.Show("Error fatal , por favor comunicarse con el área de sistemas", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            else
+            {
+
+                Avion avion1 = Vuelos.ObtenerAvion(1);
+                Avion avion2 = Vuelos.ObtenerAvion(2);
+                Avion avion3 = Vuelos.ObtenerAvion(3);
+                Avion avion4 = Vuelos.ObtenerAvion(4);
+
+                GenerarInformacionDeVuelo(avion1, lstBox_Avion1, 1);
+                GenerarInformacionDeVuelo(avion2, lstBox_Avion2, 2);
+                GenerarInformacionDeVuelo(avion3, lstBox_Avion3, 3);
+                GenerarInformacionDeVuelo(avion4, lstBox_Avion4, 4);              
+            }
         }
 
         private void GenerarInformacionDeVuelo(Avion avion , ListBox listBox, int id)
@@ -242,6 +229,11 @@ namespace FormApp
 
         private void ChequearDisponibilidadDeAsientos(int id)
         {
+            btn_Asiento1.Enabled = true;
+            btn_Asiento2.Enabled = true;
+            btn_Asiento3.Enabled = true;
+            btn_Asiento4.Enabled = true;
+
             Avion avion = Vuelos.ObtenerAvion(id);
             foreach (KeyValuePair<int, Pasajero> asiento in avion.Pasajeros)
             {
@@ -251,6 +243,7 @@ namespace FormApp
                         if (asiento.Value != null)
                         {
                             btn_Asiento1.Enabled = false;
+                            
                         }
                         break;
                     case 2:
@@ -288,17 +281,6 @@ namespace FormApp
             btn_Atras.Hide();
         }
 
-        private void ChequearLugarDisponible(Avion avion1)
-        {
-            foreach (KeyValuePair<int, Pasajero> pasajeros in avion1.Pasajeros)
-            {
-                if (pasajeros.Value == null)
-                {
-                    btn_Asiento1.Enabled = false;
-                }
-                break;
-            }
-        }
         private void MostrarBotonesDeAsientos()
         {
             btn_Asiento1.Show();
@@ -323,5 +305,7 @@ namespace FormApp
         {
             GenerarInterfaceForm();
         }
+
+
     }
 }

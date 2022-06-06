@@ -10,8 +10,7 @@ namespace Entidades
     public static class Vuelos
     {
         #region Atributos
-
-   
+        
         public static List<Avion> vuelos;
 
         #endregion
@@ -19,30 +18,16 @@ namespace Entidades
         #region Constructor
         static Vuelos()
         {
-            InstanciarVuelos();
         }
 
         #endregion
 
         #region Metodos
 
-        private static void InstanciarVuelos()
-        {
-            try
-            {
-                new Json<List<Avion>>().Read("Vuelos.json", out vuelos);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al cargar los datos", ex);
-            }
-
-        }
-
         public static Avion ObtenerAvion(int id)
         {
-            try
-            {  
+            if(vuelos != null)
+            {
                 Avion avion = new Avion();
                 foreach (var avion1 in vuelos)
                 {
@@ -54,15 +39,12 @@ namespace Entidades
                         break;
                     }
                 }
-
-                return avion;
+            return avion;
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
-               
+                return null;
             }
-            
         }
 
         #endregion
