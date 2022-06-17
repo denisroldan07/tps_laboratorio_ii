@@ -1,0 +1,20 @@
+Origen del Error: BuscarPasajero
+
+Date: 6/6/2022 02:53:23
+
+Error: Input string was not in a correct format.
+Origen del Error: EliminarPasajero
+
+Date: 6/6/2022 07:12:23
+
+Error: Collection was modified; enumeration operation may not execute.
+Origen del Error: ModificarPasajero
+
+Date: 6/15/2022 4:40:44 AM
+
+Error: Input string was not in a correct format.
+Origen del Error: ModificarPasajero
+
+Date: 6/15/2022 4:44:53 AM
+
+Error: Input string was not in a correct format.
