@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Archivos;
@@ -15,7 +9,7 @@ namespace FormApp
     public partial class BorrarPasajero : Form
     {
         public static int idVuelo;
-        public static long dniPasajeroAEliminar;
+        public static Pasajero pasajeroAEliminar = new Pasajero(); 
        
         public BorrarPasajero()
         {
@@ -36,59 +30,28 @@ namespace FormApp
         {
             try
             {
-                if (string.IsNullOrEmpty(txtBox_DNI.Text))
+                if (dgv_Pasajeros.CurrentRow.DataBoundItem == null)
                 {
-                    MessageBox.Show("Complete el campo DNI", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (!long.TryParse(txtBox_DNI.Text, out _) || txtBox_DNI.Text.Length < 7 || txtBox_DNI.Text.Length > 8)
-                {
-                    MessageBox.Show("DNI inválido", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe seleccionarse una fila que no este vacia", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    long dni = long.Parse(txtBox_DNI.Text);
-                    Avion avion = Vuelos.ObtenerAvion(idVuelo);
-                    if (!Avion.BuscarPasajeroEnAvion(dni, idVuelo, avion, out _))
+                    DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea eliminar del vuelo a:\n{pasajeroAEliminar.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if(dialogResult == DialogResult.Yes)
                     {
-                        MessageBox.Show("El DNI que ingresó no pertenece a este vuelo", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtBox_DNI.Clear();
-                    }
-                    else
-                    {
-                        dniPasajeroAEliminar = dni;
-                        MessageBox.Show("Esta seguro que desea eliminar del vuelo a este pasajero?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
-                        foreach (var pasajero in avionAux.Pasajeros)
+                        foreach (KeyValuePair<int,Pasajero> pasajero in avionAux.Pasajeros)
                         {
-                            if (pasajero.Value == null)
+                            if(pasajero.Value.Dni == pasajeroAEliminar.Dni)
                             {
-                                continue;
-                            }
-
-                            if (pasajero.Value.Dni == dniPasajeroAEliminar)
-                            {
-                                KeyValuePair<int, Pasajero> aux = new KeyValuePair<int, Pasajero>(pasajero.Key, null);
                                 avionAux.Pasajeros.Remove(pasajero.Key);
-                                avionAux.Pasajeros.Add(aux.Key,null);
+                                avionAux.Pasajeros.Add(pasajero.Key, null);
                                 break;
                             }
                         }
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            Avion aux = Vuelos.vuelos[i];
-                            if (idVuelo == aux.Id)
-                            {
-                                Vuelos.vuelos[i] = avionAux;
-                                break;
-                            }
-                        }
+                        MessageBox.Show($"El pasajero {pasajeroAEliminar.ToString()}\neliminado exitosamente !", "BAJA REALIZADA EXITOSAMENTE!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                    MessageBox.Show("Pasajero eliminado con exito !", "Eliminacion completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GenerarInterfaceForm();
                 }
-               
             }
             catch (Exception ex)
             {
@@ -97,27 +60,27 @@ namespace FormApp
             }
         }
 
-        #region BotonesModificar
+        #region BotonesEliminar
 
-        private void btn_Modificar1_Click(object sender, EventArgs e)
+        private void btn_Eliminar1_Click(object sender, EventArgs e)
         {
             idVuelo = 1;
             MostrarListaDePasajeros(idVuelo);
         }
 
-        private void btn_Modificar2_Click(object sender, EventArgs e)
+        private void btn_Eliminar2_Click(object sender, EventArgs e)
         {
             idVuelo = 2;
             MostrarListaDePasajeros(idVuelo);
         }
 
-        private void btn_Modificar3_Click(object sender, EventArgs e)
+        private void btn_Eliminar3_Click(object sender, EventArgs e)
         {
             idVuelo = 3;
             MostrarListaDePasajeros(idVuelo);
         }
 
-        private void btn_Modificar4_Click(object sender, EventArgs e)
+        private void btn_Eliminar4_Click(object sender, EventArgs e)
         {
             idVuelo = 4;
             MostrarListaDePasajeros(idVuelo);
@@ -132,7 +95,6 @@ namespace FormApp
             lstBox_Avion2.Items.Clear();
             lstBox_Avion3.Items.Clear();
             lstBox_Avion4.Items.Clear();
-            lstBox_Pasajeros.Items.Clear();
             OcultarBotones();
 
             if (Vuelos.vuelos == null)
@@ -186,33 +148,36 @@ namespace FormApp
 
         private void MostrarListaDePasajeros(int idVuelo)
         {
-            lstBox_Pasajeros.Items.Clear();
-
+            List<Pasajero> pasajeros = new List<Pasajero>();
             Avion avion = Vuelos.ObtenerAvion(idVuelo);
-            if (Avion.ObtenerPasajeros(idVuelo, avion, out List<Pasajero> pasajeros))
-            {
-                foreach (Pasajero pasajero in pasajeros)
-                {
-                    lstBox_Pasajeros.Items.Add(pasajero.ToString());
-                }
-            }
 
-            MostrarBotones();
+            ObtenerPasajerosDataGrid(pasajeros, avion);
+
+            btn_Atras.Show();
+            btn_EliminarPasajero.Show();
+            dgv_Pasajeros.Show();
+            dgv_Pasajeros.DataSource = pasajeros;
+        }
+
+        private static void ObtenerPasajerosDataGrid(List<Pasajero> pasajeros, Avion avion)
+        {
+            foreach (KeyValuePair<int, Pasajero> pasajero in avion.Pasajeros)
+            {
+                pasajeros.Add(pasajero.Value);
+            }
         }
 
         private void OcultarBotones()
         {
-            txtBox_DNI.Hide();
-            lstBox_Pasajeros.Hide();
+            dgv_Pasajeros.Hide();
             btn_EliminarPasajero.Hide();
             btn_Atras.Hide();
         }
 
         private void MostrarBotones()
         {
-            lstBox_Pasajeros.Show();
+            dgv_Pasajeros.Show();
             btn_Atras.Show();
-            txtBox_DNI.Show();
             btn_EliminarPasajero.Show();
         }
 
@@ -223,6 +188,20 @@ namespace FormApp
             GenerarInterfaceForm();
         }
 
-   
+        private void dgv_Pasajeros_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (dgv_Pasajeros.SelectedRows.Count > 0)
+                {
+                    pasajeroAEliminar = (Pasajero)dgv_Pasajeros.CurrentRow.DataBoundItem;
+                }
+            }
+            catch (Exception ex)
+            {
+                new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero"));
+                MessageBox.Show("Ocurrio un error", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

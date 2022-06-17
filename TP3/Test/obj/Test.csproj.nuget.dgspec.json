@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Test\\Test.csproj": {}
+    "C:\\Users\\denis\\source\\repos\\TP3\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj": {
+    "C:\\Users\\denis\\source\\repos\\TP3\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj",
-        "projectName": "Archivos",
-        "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj",
-        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\obj\\",
+        "projectUniqueName": "C:\\Users\\denis\\source\\repos\\TP3\\Test\\Test.csproj",
+        "projectName": "Test",
+        "projectPath": "C:\\Users\\denis\\source\\repos\\TP3\\Test\\Test.csproj",
+        "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\denis\\source\\repos\\TP3\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,128 +22,13 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nugets.trabajo.gob.ar/nuget": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj",
-        "projectName": "Entidades",
-        "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj",
-        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj": {
-                "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Archivos\\Archivos.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Test\\Test.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Test\\Test.csproj",
-        "projectName": "Test",
-        "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Test\\Test.csproj",
-        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Test\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj": {
-                "projectPath": "C:\\Users\\Denis\\source\\repos\\tps_laboratorio_ii\\TP3\\Entidades\\Entidades.csproj"
-              }
-            }
           }
         },
         "warningProperties": {
@@ -168,10 +53,6 @@
               "target": "Package",
               "version": "[16.9.4, )"
             },
-            "NUnit": {
-              "target": "Package",
-              "version": "[3.13.3, )"
-            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.0.2, )"
@@ -192,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

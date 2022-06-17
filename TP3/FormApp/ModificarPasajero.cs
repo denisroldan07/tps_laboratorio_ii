@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Archivos;
@@ -16,8 +10,8 @@ namespace FormApp
     public partial class ModificarPasajero : Form
     {
         public static int idVuelo;
-        public static long dniPasajeroAModificar;
-        public static Pasajero pasajeroAModificar;
+        public static Pasajero pasajeroOriginal = new Pasajero();
+        public static Pasajero pasajeroAModificar = new Pasajero();
 
         public ModificarPasajero()
         {
@@ -57,49 +51,6 @@ namespace FormApp
         #endregion
 
         /// <summary>
-        /// Evento que verifica si el dni ingresado por text box es valido y procede a guardar en variables estaticas la informacion necesaria para poder luego hacer la modificacion del pasajero
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_ModificarPasajero_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(txtBox_DNI.Text))
-                {
-                    MessageBox.Show("Complete el campo DNI", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (!long.TryParse(txtBox_DNI.Text, out _) || txtBox_DNI.Text.Length < 7 || txtBox_DNI.Text.Length > 8)
-                {
-                    MessageBox.Show("DNI inválido", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    long dni = long.Parse(txtBox_DNI.Text);
-                    Avion avion = Vuelos.ObtenerAvion(idVuelo);
-                    if (!Avion.BuscarPasajeroEnAvion(dni, idVuelo, avion, out Pasajero pasajero))
-                    {
-                        MessageBox.Show("El DNI que ingresó no pertenece a este vuelo", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtBox_DNI.Clear();
-                    }
-                    else
-                    {
-                        pasajeroAModificar = pasajero;
-                        dniPasajeroAModificar = dni;
-                        txtBox_Nombre.Show();
-                        txtBox_Apellido.Show();
-                        btn_AceptarCambios.Show();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero"));
-                MessageBox.Show("Ocurrio un error", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
         /// Evento que modifica un pasajero , primero chequea que los datos son validos y luego gracias a las variables estaticas guardadas con la informacion necesaria modifica el pasajero
         /// </summary>
         /// <param name="sender"></param>
@@ -108,47 +59,75 @@ namespace FormApp
         {
             try
             {
-                if(string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text))
+                if (string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text) || string.IsNullOrEmpty(txtBox_DNI.Text) || cmb_AsientosLibres.SelectedItem == null)
                 {
                     MessageBox.Show("Debe completar todos los campos del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } else if(!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$"))
+                }
+                else if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || !long.TryParse(txtBox_DNI.Text, out _))
                 {
                     MessageBox.Show("Hay errores en los campos del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } else if(txtBox_Nombre.Text == pasajeroAModificar.Nombre)
+                }
+                else if ((txtBox_DNI.Text.Length < 7) || (txtBox_DNI.Text.Length > 8))
+                {
+                    MessageBox.Show("Ingreso un Dni con la cantidad de numeros inválida", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtBox_Nombre.Text == pasajeroAModificar.Nombre)
                 {
                     MessageBox.Show("El nombre no puede ser el mismo en una modificación", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else
                 {
-                    pasajeroAModificar.Nombre = txtBox_Nombre.Text;
-                    pasajeroAModificar.Apellido = txtBox_Apellido.Text;
-
-                    Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
-                    foreach (var pasajero in avionAux.Pasajeros)
+                    DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea modificar: {pasajeroOriginal.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        if(pasajero.Value == null)
+                        pasajeroAModificar.Nombre = txtBox_Nombre.Text;
+                        pasajeroAModificar.Apellido = txtBox_Apellido.Text;
+                        pasajeroAModificar.Dni = long.Parse(txtBox_DNI.Text);
+                        pasajeroAModificar.IdAsiento = int.Parse(cmb_AsientosLibres.SelectedItem.ToString());
+
+                        Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
+                        foreach (var pasajero in avionAux.Pasajeros)
                         {
-                            continue;
+                            if (pasajero.Value == null)
+                            {
+                                continue;
+                            }
+
+                            if (pasajero.Value.Dni == pasajeroAModificar.Dni)
+                            {
+                                //Una vez que encuentro al pasajero, cambio su valor a null dejando libre el asiento y busco la key del asiento a donde voy a mover al pasajero.
+
+                                //Borro del diccionario el pasajero del asiento ocupado y borro el asiento que esta libre
+                                avionAux.Pasajeros.Remove(pasajero.Key);
+                                avionAux.Pasajeros.Remove(pasajeroAModificar.IdAsiento);
+
+                                //Ahora actualizo el primer asiento borrado dejandolo libre y luego agrego el pasajero modificado
+                                avionAux.Pasajeros.Add(pasajero.Key, null);
+                                avionAux.Pasajeros.Add(pasajeroAModificar.IdAsiento, pasajeroAModificar);
+                                break;
+                            }
                         }
 
-                        if(pasajero.Value.Dni == dniPasajeroAModificar)
+                        //Actualizo la lista de Vuelos con la nueva modificacion
+                        for (int i = 0; i < 4; i++)
                         {
-                            pasajero.Value.Nombre = pasajeroAModificar.Nombre;
-                            pasajero.Value.Apellido = pasajeroAModificar.Apellido;
+                            Avion aux = Vuelos.vuelos[i];
+                            if (idVuelo == aux.Id)
+                            {
+                                Vuelos.vuelos[i] = avionAux;
+                                break;
+                            }
                         }
+
+                        new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
+                        MessageBox.Show($"El pasajero {pasajeroOriginal.ToString()} \nfue modificado exitosamente con la siguiente informacion:\n{pasajeroAModificar.ToString()}", "MODIFICACIÓN EXITOSA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MostrarListaDePasajeros(idVuelo);
+                        OcultarBotones();
                     }
-
-                    for (int i = 0; i < 4; i++)
+                    else
                     {
-                        Avion aux = Vuelos.vuelos[i];
-                        if(idVuelo == aux.Id)
-                        {
-                            Vuelos.vuelos[i] = avionAux;
-                            break;
-                        }
+                        MostrarListaDePasajeros(idVuelo);
                     }
                 }
-
-                GenerarInterfaceForm();
             }
             catch (Exception ex)
             {
@@ -161,11 +140,11 @@ namespace FormApp
 
         private void GenerarInterfaceForm()
         {
+            dgv_Pasajeros.Hide();
             lstBox_Avion1.Items.Clear();
             lstBox_Avion2.Items.Clear();
             lstBox_Avion3.Items.Clear();
             lstBox_Avion4.Items.Clear();
-            lstBox_Pasajeros.Items.Clear();
             OcultarBotones();
 
             if (Vuelos.vuelos == null)
@@ -218,18 +197,22 @@ namespace FormApp
 
         private void MostrarListaDePasajeros(int idVuelo)
         {
-            lstBox_Pasajeros.Items.Clear();
-
+            List<Pasajero> pasajeros = new List<Pasajero>();
             Avion avion = Vuelos.ObtenerAvion(idVuelo);
-            if (Avion.ObtenerPasajeros(idVuelo, avion, out List<Pasajero> pasajeros))
-            {
-                foreach (Pasajero pasajero in pasajeros)
-                {
-                    lstBox_Pasajeros.Items.Add(pasajero.ToString());
-                }
-            }
 
-            MostrarBotones();
+            ObtenerPasajerosDataGrid(pasajeros, avion);
+
+            btn_Atras.Show();
+            dgv_Pasajeros.Show();
+            dgv_Pasajeros.DataSource = pasajeros;
+        }
+
+        private static void ObtenerPasajerosDataGrid(List<Pasajero> pasajeros, Avion avion)
+        {
+            foreach (KeyValuePair<int, Pasajero> pasajero in avion.Pasajeros)
+            {
+                pasajeros.Add(pasajero.Value);
+            }
         }
 
         private void OcultarBotones()
@@ -237,19 +220,77 @@ namespace FormApp
             txtBox_Nombre.Hide();
             txtBox_Apellido.Hide();
             txtBox_DNI.Hide();
-            lstBox_Pasajeros.Hide();
-            btn_ModificarPasajero.Hide();
+            cmb_AsientosLibres.Hide();
             btn_AceptarCambios.Hide();
             btn_Atras.Hide();
         }
 
-        private void MostrarBotones()
+        private void MostrarBotonesModificacionPasajero()
         {
-            lstBox_Pasajeros.Show();
-            btn_Atras.Show();
+            txtBox_Nombre.Show();
+            txtBox_Apellido.Show();
             txtBox_DNI.Show();
-            btn_ModificarPasajero.Show();
+            cmb_AsientosLibres.Show();
+            btn_AceptarCambios.Show();
         }
+
+        private void dgv_Pasajeros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dgv_Pasajeros.SelectedRows.Count > 0)
+                {
+                    if (dgv_Pasajeros.CurrentRow.DataBoundItem == null)
+                    {
+                        MessageBox.Show("Debe seleccionarse una fila que no este vacia", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Pasajero pasajero = (Pasajero)dgv_Pasajeros.CurrentRow.DataBoundItem;
+                        Avion avion = Vuelos.ObtenerAvion(idVuelo);
+                        MostrarBotonesModificacionPasajero();
+                        pasajeroOriginal.Nombre = pasajero.Nombre;
+                        pasajeroOriginal.Apellido = pasajero.Apellido;
+                        pasajeroOriginal.Dni = pasajero.Dni;
+                        pasajeroOriginal.IdAsiento = pasajero.IdAsiento;
+
+                        txtBox_DNI.Text = pasajero.Dni.ToString();
+                        txtBox_DNI.Enabled = false;
+                        txtBox_Nombre.Text = pasajero.Nombre;
+                        txtBox_Apellido.Text = pasajero.Apellido;
+
+                        List<int> asientosVacios = DevolverAsientosVacios(avion);
+                        foreach (var asiento in asientosVacios)
+                        {
+                            cmb_AsientosLibres.Items.Add(asiento);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero"));
+                MessageBox.Show("Ocurrio un error", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        public List<int> DevolverAsientosVacios(Avion avion)
+        {
+            List<int> listaAsientosVacios = new List<int>();
+
+            foreach (KeyValuePair<int, Pasajero> asiento in avion.Pasajeros)
+            {
+                if (asiento.Value == null)
+                {
+                    listaAsientosVacios.Add(asiento.Key);
+                }
+            }
+
+            return listaAsientosVacios;
+        }
+
         #endregion
 
         private void btn_Atras_Click(object sender, EventArgs e)
@@ -257,6 +298,9 @@ namespace FormApp
             GenerarInterfaceForm();
         }
 
+        
 
+        
+ 
     }
 }

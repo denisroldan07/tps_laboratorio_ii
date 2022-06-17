@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Entidades"
+    "\\Entidades",
+    "\\FormApp"
   ],
-  "SelectedNode": "\\Entidades\\Avion.cs",
+  "SelectedNode": "\\FormApp\\CargarPasajero.cs",
   "PreviewInSolutionExplorer": false
 }

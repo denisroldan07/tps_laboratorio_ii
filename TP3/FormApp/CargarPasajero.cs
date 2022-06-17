@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Entidades;
@@ -99,40 +98,42 @@ namespace FormApp
                 {
                     MessageBox.Show("Debe completar todos los campos del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || !long.TryParse(txtBox_DNI.Text, out _))
+                {
+                    MessageBox.Show("Hay errores en la carga del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if ((txtBox_DNI.Text.Length < 7) || (txtBox_DNI.Text.Length > 8))
+                {
+                    MessageBox.Show("Ingreso un Dni con la cantidad de numeros inválida", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 else
                 {
-                    if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || (!long.TryParse(txtBox_DNI.Text, out _) && (txtBox_DNI.Text.Length == 7 || txtBox_DNI.Text.Length == 8)))
+                    var nombre = txtBox_Nombre.Text;
+                    var apellido = txtBox_Apellido.Text;
+                    long dni = long.Parse(txtBox_DNI.Text);
+
+                    Pasajero pasajero = new Pasajero(nombre, apellido, dni,idAsiento);
+
+                    if (ChequearPasajeroRepetido(idVuelo,pasajero))
                     {
-                        MessageBox.Show("Hay errores en la carga del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El pasajero que quiere ingresar ya esta en el avión");
                     }
                     else
                     {
-                        var nombre = txtBox_Nombre.Text;
-                        var apellido = txtBox_Apellido.Text;
-                        long dni = long.Parse(txtBox_DNI.Text);
-
-                        Pasajero pasajero = new Pasajero(nombre, apellido, dni);
-
-                        if (ChequearPasajeroRepetido(idVuelo,pasajero))
+                        if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
                         {
-                            MessageBox.Show("El pasajero que quiere ingresar ya esta en el avión");
+                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
                         }
                         else
                         {
-                            if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
-                            {
-                                MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
-                            }
-                            else
-                            {
-                                MessageBox.Show($"Hubo un error en la carga del pasajero {pasajero.Nombre}");
-                            }
+                            MessageBox.Show($"Hubo un error en la carga del pasajero {pasajero.Nombre}");
                         }
                     }
                 }
+                
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 new Text().Save("logError.txt",LogErrors.LogError(ex,"CargarPasajero"));
                 MessageBox.Show("Hay errores en la carga del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -305,7 +306,6 @@ namespace FormApp
         {
             GenerarInterfaceForm();
         }
-
 
     }
 }

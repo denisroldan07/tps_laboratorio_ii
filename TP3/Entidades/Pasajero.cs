@@ -10,6 +10,7 @@ namespace Entidades
         private string nombre;
         private string apellido;
         private long dni;
+        private int idAsiento;
 
         #endregion
 
@@ -19,26 +20,19 @@ namespace Entidades
         public string Apellido { get => apellido; set => apellido = value; }
         public long Dni { get => dni; set => dni = value; }
         
+        public int IdAsiento { get => idAsiento; set => idAsiento = value; }
         #endregion
 
         #region Constructores
 
         public Pasajero() { }
 
-        public Pasajero(string nombre, string apellido, long dni)
+        public Pasajero(string nombre, string apellido, long dni,int idAsiento)
         {
             Nombre = nombre;
             Apellido = apellido;
             Dni = dni;
-        }
-
-        #endregion
-
-        #region Metodos
-
-        public bool SerializarPasajero()
-        {
-            return new Xml<Pasajero>().Save("Pasajeros.xml",this);
+            IdAsiento = idAsiento;
         }
 
         #endregion
@@ -47,7 +41,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"Pasajero: {Nombre} {Apellido} \nDNI: {Dni}";
+            return $"Pasajero: {Nombre} {Apellido} \nDNI: {Dni} \nN° Asiento: {IdAsiento}";
         }
         #endregion
     }

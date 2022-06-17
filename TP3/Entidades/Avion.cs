@@ -99,6 +99,7 @@ namespace Entidades
                     if (pasajeroDni.Value.Dni == dni)
                     {
                         pasajero = pasajeroDni.Value;
+                        pasajero.IdAsiento = pasajeroDni.Key;
                         return true;
                     }
                 }
@@ -124,6 +125,9 @@ namespace Entidades
 
             return false;
         }
+
+
+       
 
         #endregion
 

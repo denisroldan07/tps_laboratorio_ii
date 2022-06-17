@@ -49,3 +49,6 @@ C:\Users\denis\source\repos\TP3\FormApp\obj\Debug\net5.0-windows\ref\FormApp.dll
 C:\Users\Denis\source\repos\tps_laboratorio_ii\TP3\FormApp\obj\Debug\net5.0-windows\FormApp.BuscarPasajero.resources
 C:\Users\Denis\source\repos\tps_laboratorio_ii\TP3\FormApp\obj\Debug\net5.0-windows\FormApp.ModificarPasajero.resources
 C:\Users\Denis\source\repos\tps_laboratorio_ii\TP3\FormApp\obj\Debug\net5.0-windows\FormApp.BorrarPasajero.resources
+C:\Users\denis\source\repos\TP3\FormApp\obj\Debug\net5.0-windows\FormApp.BorrarPasajero.resources
+C:\Users\denis\source\repos\TP3\FormApp\obj\Debug\net5.0-windows\FormApp.BuscarPasajero.resources
+C:\Users\denis\source\repos\TP3\FormApp\obj\Debug\net5.0-windows\FormApp.ModificarPasajero.resources
