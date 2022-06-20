@@ -122,8 +122,13 @@ namespace FormApp
                     {
                         if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
                         {
-                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
+                            Avion avion = Vuelos.ObtenerAvion(idVuelo);
+                            TicketDAO ticketDAO = new TicketDAO();
+                            ticketDAO.Guardar(pasajero, avion);
+                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
                         }
                         else
                         {
@@ -157,16 +162,17 @@ namespace FormApp
         
         private bool ChequearPasajeroRepetido(int idVuelo,Pasajero pasajero)
         {
+            bool ans = false;
             for (int i = 0; i < 4; i++)
             {
                 Avion avionAux = Vuelos.vuelos[i];
                 if(Avion.BuscarPasajeroEnAvion(pasajero.Dni, idVuelo, avionAux,out _))
                 {
-                    return true;
+                    ans = true;
                 }
             }
 
-            return false;
+            return ans;
         }
         #endregion
 

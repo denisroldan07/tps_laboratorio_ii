@@ -34,3 +34,15 @@ C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.dll
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\refint\Archivos.dll
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.pdb
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\ref\Archivos.dll
+C:\Users\denis\source\repos\TP4\Archivos\bin\Debug\net5.0\Archivos.deps.json
+C:\Users\denis\source\repos\TP4\Archivos\bin\Debug\net5.0\Archivos.dll
+C:\Users\denis\source\repos\TP4\Archivos\bin\Debug\net5.0\Archivos.pdb
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.csproj.AssemblyReference.cache
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.AssemblyInfoInputs.cache
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.AssemblyInfo.cs
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.csproj.CoreCompileInputs.cache
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.dll
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\refint\Archivos.dll
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\Archivos.pdb
+C:\Users\denis\source\repos\TP4\Archivos\obj\Debug\net5.0\ref\Archivos.dll

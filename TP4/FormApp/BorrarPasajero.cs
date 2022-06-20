@@ -42,14 +42,20 @@ namespace FormApp
                         Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
                         foreach (KeyValuePair<int,Pasajero> pasajero in avionAux.Pasajeros)
                         {
+                            if(pasajero.Value == null)
+                            {
+                                continue;
+                            }
                             if(pasajero.Value.Dni == pasajeroAEliminar.Dni)
                             {
+                                Pasajero pAEliminar = new Pasajero(pasajero.Value.Nombre,pasajero.Value.Apellido,pasajero.Value.Dni,pasajero.Value.IdAsiento);
                                 avionAux.Pasajeros.Remove(pasajero.Key);
                                 avionAux.Pasajeros.Add(pasajero.Key, null);
                                 break;
                             }
                         }
                         MessageBox.Show($"El pasajero {pasajeroAEliminar.ToString()}\neliminado exitosamente !", "BAJA REALIZADA EXITOSAMENTE!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MostrarListaDePasajeros(idVuelo);
                     }
                 }
             }
@@ -64,24 +70,28 @@ namespace FormApp
 
         private void btn_Eliminar1_Click(object sender, EventArgs e)
         {
+            GenerarInterfaceForm();
             idVuelo = 1;
             MostrarListaDePasajeros(idVuelo);
         }
 
         private void btn_Eliminar2_Click(object sender, EventArgs e)
         {
+            GenerarInterfaceForm();
             idVuelo = 2;
             MostrarListaDePasajeros(idVuelo);
         }
 
         private void btn_Eliminar3_Click(object sender, EventArgs e)
         {
+            GenerarInterfaceForm();
             idVuelo = 3;
             MostrarListaDePasajeros(idVuelo);
         }
 
         private void btn_Eliminar4_Click(object sender, EventArgs e)
         {
+            GenerarInterfaceForm();
             idVuelo = 4;
             MostrarListaDePasajeros(idVuelo);
         }
@@ -152,6 +162,9 @@ namespace FormApp
             Avion avion = Vuelos.ObtenerAvion(idVuelo);
 
             ObtenerPasajerosDataGrid(pasajeros, avion);
+
+
+            pasajeros.Sort(Pasajero.Comparar);
 
             btn_Atras.Show();
             btn_EliminarPasajero.Show();

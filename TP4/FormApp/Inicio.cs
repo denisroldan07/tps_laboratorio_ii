@@ -37,7 +37,6 @@ namespace FormApp
             {
                 new Text().Save("logError.txt", LogErrors.LogError(ex, "form Inicio"));
                 MessageBox.Show("Error fatal , por favor comunicarse con el área de sistemas", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
@@ -78,11 +77,6 @@ namespace FormApp
             }
         }
 
-        private void btn_BuscarPasajero_Click(object sender, EventArgs e)
-        {
-            LoadForm(new BuscarPasajero());
-        }
-
         private void btn_ModificarPasajero_Click(object sender, EventArgs e)
         {
             LoadForm(new ModificarPasajero());
@@ -91,6 +85,11 @@ namespace FormApp
         private void btn_EliminarPasajero_Click(object sender, EventArgs e)
         {
             LoadForm(new BorrarPasajero());
+        }
+
+        private void btn_GestionarTickets_Click(object sender, EventArgs e)
+        {
+            LoadForm(new GestionarTickets());
         }
 
         private void btn_Salir_Click(object sender, EventArgs e)
@@ -107,5 +106,7 @@ namespace FormApp
                 Application.Exit();
             }
         }
+
+
     }
 }

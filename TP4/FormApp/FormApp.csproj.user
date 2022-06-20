@@ -4,10 +4,10 @@
     <Compile Update="BorrarPasajero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="BuscarPasajero.cs">
+    <Compile Update="CargarPasajero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CargarPasajero.cs">
+    <Compile Update="GestionarTickets.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Inicio.cs">

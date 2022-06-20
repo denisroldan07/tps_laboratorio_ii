@@ -18,3 +18,50 @@ Origen del Error: ModificarPasajero
 Date: 6/15/2022 4:44:53 AM
 
 Error: Input string was not in a correct format.
+Origen del Error: form Inicio
+
+Date: 6/18/2022 9:26:09 PM
+
+Error: Index was outside the bounds of the array.
+Origen del Error: form Inicio
+
+Date: 6/18/2022 9:27:01 PM
+
+Error: Index was outside the bounds of the array.
+Origen del Error: form Inicio
+
+Date: 6/18/2022 9:30:15 PM
+
+Error: Index was outside the bounds of the array.
+Origen del Error: form Inicio
+
+Date: 6/18/2022 9:30:57 PM
+
+Error: Index was outside the bounds of the array.
+Origen del Error: CargarPasajero
+
+Date: 6/18/2022 9:51:22 PM
+
+Error: Violation of PRIMARY KEY constraint 'PK__Pasajero__D87608A6552DC347'. Cannot insert duplicate key in object 'dbo.Pasajero'. The duplicate key value is (38797877).
+The statement has been terminated.
+Origen del Error: CargarPasajero
+
+Date: 6/19/2022 12:46:20 AM
+
+Error: Invalid column name 'dni'.
+Origen del Error: CargarPasajero
+
+Date: 6/19/2022 12:49:34 AM
+
+Error: Invalid column name 'dni'.
+Origen del Error: GeneracionDeTickets
+
+Date: 6/19/2022 10:50:20 PM
+
+Error: Invalid column name 'Id_Asiento'.
+Invalid column name 'Id_Avion'.
+Origen del Error: GeneracionDeTickets
+
+Date: 6/20/2022 3:19:21 AM
+
+Error: ExecuteReader requires an open and available Connection. The connection's current state is closed.
