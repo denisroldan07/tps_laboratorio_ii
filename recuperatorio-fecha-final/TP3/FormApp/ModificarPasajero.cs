@@ -69,6 +69,11 @@ namespace FormApp
                 }
 
             }
+            catch(FormFormatErrorException ex)
+            {
+                new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero - FormFormatErrorException"));
+                MessageBox.Show("Ocurrio un error", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero"));
@@ -80,19 +85,19 @@ namespace FormApp
         {
             if (string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text) || string.IsNullOrEmpty(txtBox_DNI.Text))
             {
-                MessageBox.Show("Debe completar todos los campos del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("Debe completar todos los campos del formulario");
             }
             else if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || !long.TryParse(txtBox_DNI.Text, out _))
             {
-                MessageBox.Show("Hay errores en los campos del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("Hay errores en los campos del formulario");
             }
             else if ((txtBox_DNI.Text.Length < 7) || (txtBox_DNI.Text.Length > 8))
             {
-                MessageBox.Show("Ingreso un Dni con la cantidad de numeros inválida", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("Ingreso un Dni con la cantidad de numeros inválida");
             }
             else if (txtBox_Nombre.Text == pasajeroOriginal.Nombre)
             {
-                MessageBox.Show("El nombre no puede ser el mismo en una modificación", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("El nombre no puede ser el mismo en una modificación");
             }
             else
             {
@@ -154,19 +159,19 @@ namespace FormApp
         {
             if (string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text) || string.IsNullOrEmpty(txtBox_DNI.Text) || cmb_AsientosLibres.SelectedItem == null)
             {
-                MessageBox.Show("Debe completar todos los campos del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("Debe completar todos los campos del formulario");
             }
             else if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || !long.TryParse(txtBox_DNI.Text, out _))
             {
-                MessageBox.Show("Hay errores en los campos del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("Hay errores en los campos del formulario");
             }
             else if ((txtBox_DNI.Text.Length < 7) || (txtBox_DNI.Text.Length > 8))
             {
-                MessageBox.Show("Ingreso un Dni con la cantidad de numeros inválida", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("Ingreso un Dni con la cantidad de numeros inválida");
             }
             else if (txtBox_Nombre.Text == pasajeroOriginal.Nombre)
             {
-                MessageBox.Show("El nombre no puede ser el mismo en una modificación", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormFormatErrorException("El nombre no puede ser el mismo en una modificación");
             }
             else
             {

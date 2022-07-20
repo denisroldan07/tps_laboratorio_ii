@@ -25,7 +25,7 @@ namespace FormApp
                 List<Avion> aviones;
                 if (!new Json<List<Avion>>().Read(@"\Vuelos.json", out aviones))
                 {
-                    MessageBox.Show("Hubo un error en la carga de datos");
+                    throw new Exception();
                 }
                 else
                 {
@@ -36,7 +36,7 @@ namespace FormApp
             catch (Exception ex)
             {
                 new Text().Save("logError.txt", LogErrors.LogError(ex, "form Inicio"));
-                MessageBox.Show("Error fatal , por favor comunicarse con el área de sistemas", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error fatal.Por favor comunicarse con el área de sistemas", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

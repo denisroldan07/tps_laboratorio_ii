@@ -23,3 +23,78 @@ Origen del Error: ModificarPasajero
 Date: 10/7/2022 18:53:19
 
 Error: An item with the same key has already been added. Key: 3
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 12:28:55
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:02:23
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:02:28
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:02:41
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:24:15
+
+Error: Hay errores en la carga del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:24:22
+
+Error: Ingreso un Dni con la cantidad de numeros inválida
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:30:30
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:30:47
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:32:50
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:33:16
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:33:32
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:54:14
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:58:12
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vuelo.json
+Origen del Error: CargarPasajero
+
+Date: 19/7/2022 02:04:09
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 19/7/2022 02:04:26
+
+Error: Debe completar todos los campos del formulario

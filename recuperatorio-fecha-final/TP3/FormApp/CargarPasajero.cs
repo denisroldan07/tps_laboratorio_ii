@@ -96,15 +96,16 @@ namespace FormApp
             {
                 if (string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text) || string.IsNullOrEmpty(txtBox_DNI.Text))
                 {
-                    MessageBox.Show("Debe completar todos los campos del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FormFormatErrorException("Debe completar todos los campos del formulario");
                 }
                 else if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || !long.TryParse(txtBox_DNI.Text, out _))
                 {
-                    MessageBox.Show("Hay errores en la carga del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FormFormatErrorException("Hay errores en la carga del formulario");
+
                 }
                 else if ((txtBox_DNI.Text.Length < 7) || (txtBox_DNI.Text.Length > 8))
                 {
-                    MessageBox.Show("Ingreso un Dni con la cantidad de numeros inválida", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FormFormatErrorException("Ingreso un Dni con la cantidad de numeros inválida");
                 }
                 else
                 {
@@ -116,7 +117,7 @@ namespace FormApp
 
                     if (Avion.ChequearPasajeroRepetido(idVuelo,pasajero))
                     {
-                        MessageBox.Show("El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible","ATENCIÓN",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        throw new FormFormatErrorException("El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible");
                     }
                     else
                     {
@@ -133,10 +134,15 @@ namespace FormApp
                 }
                 
             }
+            catch (FormFormatErrorException ex)
+            {
+                new Text().Save("logError.txt", LogErrors.LogError(ex, "CargarPasajero - FormFormatErrorException"));
+                MessageBox.Show(ex.Message, "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 new Text().Save("logError.txt",LogErrors.LogError(ex,"CargarPasajero"));
-                MessageBox.Show("Hay errores en la carga del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message,"ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
