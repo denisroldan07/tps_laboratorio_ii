@@ -114,8 +114,8 @@ namespace FormApp
                     long dni = long.Parse(txtBox_DNI.Text);
 
                     Pasajero pasajero = new Pasajero(nombre, apellido, dni,idAsiento);
-
-                    if (Avion.ChequearPasajeroRepetido(idVuelo,pasajero))
+                    
+                    if (Avion.ChequearPasajeroRepetido(Vuelos.vuelos,pasajero))
                     {
                         throw new FormFormatErrorException("El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible");
                     }
@@ -123,7 +123,7 @@ namespace FormApp
                     {
                         if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
                         {
-                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\nTicket:{Vuelos.ObtenerAvion(idVuelo).ToString()}\n{pasajero.ToString()}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
                         }
                         else
@@ -131,8 +131,7 @@ namespace FormApp
                             MessageBox.Show($"Hubo un error en la carga del pasajero {pasajero.Nombre}");
                         }
                     }
-                }
-                
+                }   
             }
             catch (FormFormatErrorException ex)
             {

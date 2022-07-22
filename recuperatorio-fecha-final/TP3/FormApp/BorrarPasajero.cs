@@ -50,6 +50,7 @@ namespace FormApp
                             }
                         }
                         MessageBox.Show($"El pasajero {pasajeroAEliminar.ToString()}\neliminado exitosamente !", "BAJA REALIZADA EXITOSAMENTE!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MostrarListaDePasajeros(idVuelo);
                     }
                 }
             }

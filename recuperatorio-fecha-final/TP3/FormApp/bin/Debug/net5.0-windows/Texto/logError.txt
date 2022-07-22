@@ -98,3 +98,23 @@ Origen del Error: CargarPasajero
 Date: 19/7/2022 02:04:26
 
 Error: Debe completar todos los campos del formulario
+Origen del Error: BuscarPasajero
+
+Date: 20/7/2022 16:58:09
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 20/7/2022 17:07:31
+
+Error: Object reference not set to an instance of an object.
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 20/7/2022 17:17:30
+
+Error: El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 20/7/2022 17:21:28
+
+Error: Ingreso un Dni con la cantidad de numeros inválida

@@ -126,13 +126,24 @@ namespace Entidades
             return false;
         }
 
-        public static bool ChequearPasajeroRepetido(int idVuelo, Pasajero pasajero)
+        /// <summary>
+        /// Chequea si ya esta la persona en alguno de los vuelos
+        /// </summary>
+        /// <param name="idVuelo"></param>
+        /// <param name="pasajero"></param>
+        /// <returns>Devuelve verdadero si la encuentra y false en caso contrario</returns>
+        public static bool ChequearPasajeroRepetido(List<Avion> listaAviones,Pasajero pasajero)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < listaAviones.Count; i++)
             {
-                Avion avionAux = Vuelos.vuelos[i];
+                Avion avionAux = listaAviones[i];
                 foreach (var asiento in avionAux.Pasajeros)
                 {
+                    if (asiento.Value == null)
+                    {
+                        continue;
+                    }
+
                     if (asiento.Value.Dni == pasajero.Dni)
                     {
                         return true;
@@ -143,10 +154,7 @@ namespace Entidades
             return false;
         }
 
-
-
         #endregion
-
         #region Sobrecarga
 
         public override string ToString()
