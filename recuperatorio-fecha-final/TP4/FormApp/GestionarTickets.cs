@@ -16,6 +16,7 @@ namespace FormApp
     public partial class GestionarTickets : Form
     {
         public static Tickets ticketAEliminar;
+        public static List<Tickets> tickets;
         public GestionarTickets()
         {
             InitializeComponent();
@@ -26,12 +27,14 @@ namespace FormApp
             try
             {
                 Evento evento = new Evento();
-
                 label2.Show();
-                evento.tiempoFinalizado += NotificarCargaDeTickets;
-                evento.tiempoRestante += MostrarTiempoRestante;
-                evento.MensajeTiempoFinalizado(8);
-                dgv_Tickets.DataSource = await CargarDataGrid();
+                
+                evento.OntiempoFinalizado += NotificarCargaDeTickets;
+                evento.OntiempoRestante += MostrarTiempoRestante;
+
+                evento.MensajeTiempoFinalizado(3); 
+                tickets = await CargarDataGrid();
+                dgv_Tickets.DataSource = tickets;
                 label2.Hide();
             }
             catch (Exception ex)
@@ -42,15 +45,40 @@ namespace FormApp
 
         }
 
+        private void NotificarCargaDeTickets()
+        {
+            if (tickets.Count == 0)
+            {
+                MessageBox.Show("No se pudo cargar lo pedido.\nSi es la primera vez que inicia el sistema es probable que tenga que generar un nuevo ticket cargando un nuevo pasajero en el sistema", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else
+            {
+                MessageBox.Show("Se cargaron los datos pedidos", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+
+        private void MostrarTiempoRestante(int segundos)
+        {
+            if (this.InvokeRequired)
+            {
+                Action<int> del = MostrarTiempoRestante;
+                Invoke(del, segundos);
+            }
+            else
+            {
+                label2.Text = $"Cargando {segundos}";
+            }
+        }
+
         private async Task<List<Tickets>> CargarDataGrid()
         {
             TicketDAO ticketDAO = new TicketDAO();
             List<Tickets> tickets = await Task.Run(() => 
-            { 
-                                                            
-                Thread.Sleep(8000);
+            {
+                Thread.Sleep(2500);
                 return ticketDAO.Leer();                                                                
-            
             });
 
             return tickets;
@@ -73,8 +101,8 @@ namespace FormApp
                         TicketDAO ticketDAO = new TicketDAO();
                         ticketDAO.Eliminar(ticketAEliminar);
                         MessageBox.Show("Ticket eliminado exitosamente", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        await CargarDataGrid();
-                    
+                        dgv_Tickets.DataSource = await CargarDataGrid();
+
                     }
                 }
 
@@ -102,22 +130,6 @@ namespace FormApp
             }
         }
 
-        private void NotificarCargaDeTickets()
-        {
-            MessageBox.Show("Se cargaron los datos pedidos", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
 
-        private void MostrarTiempoRestante(int segundos)
-        {
-            if(this.InvokeRequired)
-            {
-                Action<int> del = MostrarTiempoRestante;
-                Invoke(del, segundos);
-            }
-            else 
-            { 
-                label2.Text = $"Cargando {segundos}";
-            }
-        }
     }
 }

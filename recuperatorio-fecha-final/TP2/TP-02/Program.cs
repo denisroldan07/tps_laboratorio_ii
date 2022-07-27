@@ -16,7 +16,7 @@ namespace TP_02_2018
             Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight - 2);
 
             // Nombre del alumno
-            Console.Title = "Denis Roldan";
+            Console.Title = "Roldan Denis 2A";
 
             Taller taller = new Taller(6);
 
@@ -47,8 +47,8 @@ namespace TP_02_2018
 
             // Quito 2 items y muestro
             taller -= c1;
-            taller -= new Ciclomotor(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);
-
+            taller -= new Ciclomotor(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);  
+            
             Console.WriteLine(taller.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();

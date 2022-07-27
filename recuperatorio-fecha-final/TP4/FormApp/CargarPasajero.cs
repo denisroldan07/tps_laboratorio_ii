@@ -96,15 +96,16 @@ namespace FormApp
             {
                 if (string.IsNullOrEmpty(txtBox_Nombre.Text) || string.IsNullOrEmpty(txtBox_Apellido.Text) || string.IsNullOrEmpty(txtBox_DNI.Text))
                 {
-                    MessageBox.Show("Debe completar todos los campos del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FormFormatErrorException("Debe completar todos los campos del formulario");
                 }
                 else if (!Regex.IsMatch(txtBox_Nombre.Text, @"^[\p{L}]+$") || !Regex.IsMatch(txtBox_Apellido.Text, @"^[\p{L}]+$") || !long.TryParse(txtBox_DNI.Text, out _))
                 {
-                    MessageBox.Show("Hay errores en la carga del formulario", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FormFormatErrorException("Hay errores en la carga del formulario");
+
                 }
                 else if ((txtBox_DNI.Text.Length < 7) || (txtBox_DNI.Text.Length > 8))
                 {
-                    MessageBox.Show("Ingreso un Dni con la cantidad de numeros inválida", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FormFormatErrorException("Ingreso un Dni con la cantidad de numeros inválida");
                 }
                 else
                 {
@@ -113,21 +114,20 @@ namespace FormApp
                     long dni = long.Parse(txtBox_DNI.Text);
 
                     Pasajero pasajero = new Pasajero(nombre, apellido, dni,idAsiento);
-
-                    if (ChequearPasajeroRepetido(idVuelo,pasajero))
+                    
+                    if (Avion.ChequearPasajeroRepetido(Vuelos.vuelos,pasajero))
                     {
-                        MessageBox.Show("El pasajero que quiere ingresar ya esta en el avión");
+                        throw new FormFormatErrorException("El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible");
                     }
                     else
                     {
                         if (AsignarAsientoAlPasajero(idAsiento, idVuelo, pasajero))
                         {
-                            new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
                             Avion avion = Vuelos.ObtenerAvion(idVuelo);
                             TicketDAO ticketDAO = new TicketDAO();
                             ticketDAO.Guardar(pasajero, avion);
-                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\n El numero de vuelo es {idVuelo}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                            new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
+                            MessageBox.Show($"Pasajero {pasajero.Nombre} cargado correctamente !\nTicket:{Vuelos.ObtenerAvion(idVuelo).ToString()}\n{pasajero.ToString()}", "Carga correcta !", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                         else
@@ -135,13 +135,17 @@ namespace FormApp
                             MessageBox.Show($"Hubo un error en la carga del pasajero {pasajero.Nombre}");
                         }
                     }
-                }
-                
+                }   
+            }
+            catch (FormFormatErrorException ex)
+            {
+                new Text().Save("logError.txt", LogErrors.LogError(ex, "CargarPasajero - FormFormatErrorException"));
+                MessageBox.Show(ex.Message, "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 new Text().Save("logError.txt",LogErrors.LogError(ex,"CargarPasajero"));
-                MessageBox.Show("Hay errores en la carga del formulario","ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message,"ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -160,20 +164,7 @@ namespace FormApp
             return false;
         }
         
-        private bool ChequearPasajeroRepetido(int idVuelo,Pasajero pasajero)
-        {
-            bool ans = false;
-            for (int i = 0; i < 4; i++)
-            {
-                Avion avionAux = Vuelos.vuelos[i];
-                if(Avion.BuscarPasajeroEnAvion(pasajero.Dni, idVuelo, avionAux,out _))
-                {
-                    ans = true;
-                }
-            }
 
-            return ans;
-        }
         #endregion
 
 

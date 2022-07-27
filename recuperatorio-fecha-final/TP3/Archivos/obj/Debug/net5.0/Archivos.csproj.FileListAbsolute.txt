@@ -31,6 +31,6 @@ C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.AssemblyInfoI
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.AssemblyInfo.cs
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.csproj.CoreCompileInputs.cache
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.dll
-C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\refint\Archivos.dll
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\Archivos.pdb
 C:\Users\denis\source\repos\TP3\Archivos\obj\Debug\net5.0\ref\Archivos.dll
+C:\Users\Denis\source\repos\TP3\Archivos\bin\Debug\net5.0\ref\Archivos.dll

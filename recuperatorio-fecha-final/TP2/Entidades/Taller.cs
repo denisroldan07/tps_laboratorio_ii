@@ -11,8 +11,8 @@ namespace Entidades
     /// </summary>
     public sealed class Taller
     {
-        List<Vehiculo> vehiculos;
-        int espacioDisponible;
+        private List<Vehiculo> vehiculos;
+        private int espacioDisponible;
         public enum ETipo
         {
             Ciclomotor, Sedan, SUV, Todos
@@ -23,21 +23,20 @@ namespace Entidades
         {
             this.vehiculos = new List<Vehiculo>();
         }
-        public Taller(int espacioDisponible)
+        public Taller(int espacioDisponible):this()
         {
             this.espacioDisponible = espacioDisponible;
-            this.vehiculos = new List<Vehiculo>(espacioDisponible);
         }
         #endregion
 
-        #region "Sobrecargas"
+        #region "Sobrecarga"
         /// <summary>
         /// Muestro el estacionamiento y TODOS los vehículos
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return Listar(this, ETipo.Todos);
+            return this.Listar(this, ETipo.Todos);
         }
         #endregion
 
@@ -61,13 +60,22 @@ namespace Entidades
                 switch (tipo)
                 {
                     case ETipo.SUV:
-                        sb.AppendLine(v.Mostrar());
+                        if (v is Suv)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                        } 
                         break;
                     case ETipo.Ciclomotor:
-                        sb.AppendLine(v.Mostrar());
+                        if (v is Ciclomotor)
+                        {
+                           sb.AppendLine(v.Mostrar());
+                        }        
                         break;
                     case ETipo.Sedan:
-                        sb.AppendLine(v.Mostrar());
+                        if (v is Sedan)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                        } 
                         break;
                     default:
                         sb.AppendLine(v.Mostrar());
@@ -88,20 +96,20 @@ namespace Entidades
         /// <returns></returns>
         public static Taller operator +(Taller taller, Vehiculo vehiculo)
         {
-            if(taller.vehiculos.Count == taller.espacioDisponible)
+            if (!(taller is null) && !(vehiculo is null))
             {
-                return taller;
-            }
-
-            foreach (Vehiculo v in taller.vehiculos)
-            {
-                if(v == vehiculo)
+                if (taller.espacioDisponible > taller.vehiculos.Count)
                 {
-                    return taller;
+                    foreach (Vehiculo v in taller.vehiculos)
+                    {
+                        if (v == vehiculo)
+                            return taller;
+                    }
+
+                    taller.vehiculos.Add(vehiculo);
                 }
             }
-
-            taller.vehiculos.Add(vehiculo);
+                      
             return taller;
         }
 
@@ -113,23 +121,24 @@ namespace Entidades
         /// <returns></returns>
         public static Taller operator -(Taller taller, Vehiculo vehiculo)
         {
-            if(taller.vehiculos.Count > 0)
+            if (!(taller is null) && !(vehiculo is null))
             {
-                foreach (Vehiculo v in taller.vehiculos)
+                if (taller.vehiculos.Count > 0)
                 {
-                    if (v == vehiculo)
+                    foreach (Vehiculo v in taller.vehiculos)
                     {
-                        taller.vehiculos.Remove(v);
-                        break;
+                        if (v == vehiculo)
+                        {
+                            taller.vehiculos.Remove(v);
+                            break;
+                        }
                     }
-                    return taller;
                 }
-
-                return taller;
             }
-
+             
             return taller;
         }
         #endregion
     }
 }
+

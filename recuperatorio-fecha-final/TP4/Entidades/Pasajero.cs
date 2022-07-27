@@ -39,37 +39,37 @@ namespace Entidades
 
         #region Metodos
 
-        public static int Comparar(Pasajero p1 , Pasajero p2)
+        public static int Comparar(Pasajero p1, Pasajero p2)
         {
             //iguales
             int ans = 0;
 
             //p1 es mayor
-            if(p1 != null && p2 == null)
+            if (p1 != null && p2 == null)
             {
                 ans = -1;
                 return ans;
             }
 
             //p2 es mayor
-            if(p1 == null && p2 != null)
+            if (p1 == null && p2 != null)
             {
                 ans = 1;
                 return ans;
             }
 
-            if(p1 == null && p2 == null)
+            if (p1 == null && p2 == null)
             {
                 return ans;
             }
 
-            if(p1.idAsiento > p2.idAsiento)
+            if (p1.idAsiento > p2.idAsiento)
             {
                 ans = -1;
                 return ans;
             }
 
-            if(p1.idAsiento < p2.idAsiento)
+            if (p1.idAsiento < p2.idAsiento)
             {
                 ans = 1;
                 return ans;
@@ -77,7 +77,6 @@ namespace Entidades
 
             return string.Compare(p1.Nombre, p2.Nombre);
         }
-
         #endregion
 
         #region Sobrecarga

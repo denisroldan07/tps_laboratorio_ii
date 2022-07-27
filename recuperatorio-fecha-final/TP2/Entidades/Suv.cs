@@ -6,25 +6,38 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Suv : Vehiculo
+    public class Suv: Vehiculo
     {
-        public Suv(EMarca marca, string chasis, ConsoleColor color) : base(chasis,marca,color)
+        /// <summary>
+        /// Crea una instancia de tipo Suv con los atributos que recibe por parametro
+        /// </summary>
+        /// <param name="marca"></param>
+        /// <param name="chasis"></param>
+        /// <param name="color"></param>
+        public Suv(EMarca marca, string chasis, ConsoleColor color)
+            : base(chasis, marca, color)
         {
-          
         }
         /// <summary>
-        /// SUV son 'Grande'
+        /// Retorna el atributo tamanio
         /// </summary>
-        public override ETamanio Tamanio => ETamanio.Grande;
-   
-        public override string Mostrar()
+        protected override ETamanio Tamanio
+        {
+            get
+            {
+                return ETamanio.Grande;
+            } 
+        }
+
+        /// <summary>
+        /// Muestra los datos del vehiculo
+        /// </summary>
+        /// <returns></returns>
+        public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("SUV");
-            sb.AppendLine(base.Mostrar());
-            sb.AppendLine($"TAMAÑO : {this.Tamanio}");
-            sb.AppendLine("");
+            sb.AppendLine(base.Mostrar()); 
             sb.AppendLine("---------------------");
 
             return sb.ToString();

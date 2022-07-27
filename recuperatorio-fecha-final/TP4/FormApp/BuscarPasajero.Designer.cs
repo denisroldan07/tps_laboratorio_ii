@@ -31,10 +31,8 @@ namespace FormApp
         {
             this.txtBox_DNI = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lstBox_DatosPasajero = new System.Windows.Forms.ListBox();
             this.btn_BuscarPasajero = new System.Windows.Forms.Button();
             this.txtBox_IdVuelo = new System.Windows.Forms.TextBox();
-            this.btn_Ticket = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtBox_DNI
@@ -55,15 +53,6 @@ namespace FormApp
             this.label1.TabIndex = 4;
             this.label1.Text = "Buscar pasajero:";
             // 
-            // lstBox_DatosPasajero
-            // 
-            this.lstBox_DatosPasajero.FormattingEnabled = true;
-            this.lstBox_DatosPasajero.ItemHeight = 15;
-            this.lstBox_DatosPasajero.Location = new System.Drawing.Point(126, 154);
-            this.lstBox_DatosPasajero.Name = "lstBox_DatosPasajero";
-            this.lstBox_DatosPasajero.Size = new System.Drawing.Size(275, 109);
-            this.lstBox_DatosPasajero.TabIndex = 3;
-            // 
             // btn_BuscarPasajero
             // 
             this.btn_BuscarPasajero.Location = new System.Drawing.Point(126, 107);
@@ -82,25 +71,13 @@ namespace FormApp
             this.txtBox_IdVuelo.Size = new System.Drawing.Size(275, 23);
             this.txtBox_IdVuelo.TabIndex = 1;
             // 
-            // btn_Ticket
-            // 
-            this.btn_Ticket.Location = new System.Drawing.Point(126, 295);
-            this.btn_Ticket.Name = "btn_Ticket";
-            this.btn_Ticket.Size = new System.Drawing.Size(275, 23);
-            this.btn_Ticket.TabIndex = 5;
-            this.btn_Ticket.Text = "Generar ticket de vuelo";
-            this.btn_Ticket.UseVisualStyleBackColor = true;
-            this.btn_Ticket.Click += new System.EventHandler(this.btn_Ticket_Click);
-            // 
             // BuscarPasajero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 450);
-            this.Controls.Add(this.btn_Ticket);
             this.Controls.Add(this.txtBox_IdVuelo);
             this.Controls.Add(this.btn_BuscarPasajero);
-            this.Controls.Add(this.lstBox_DatosPasajero);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBox_DNI);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -115,9 +92,7 @@ namespace FormApp
 
         private System.Windows.Forms.TextBox txtBox_DNI;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lstBox_DatosPasajero;
         private System.Windows.Forms.Button btn_BuscarPasajero;
         private System.Windows.Forms.TextBox txtBox_IdVuelo;
-        private System.Windows.Forms.Button btn_Ticket;
     }
 }

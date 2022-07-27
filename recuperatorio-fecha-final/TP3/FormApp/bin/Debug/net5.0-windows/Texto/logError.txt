@@ -118,3 +118,43 @@ Origen del Error: CargarPasajero - FormFormatErrorException
 Date: 20/7/2022 17:21:28
 
 Error: Ingreso un Dni con la cantidad de numeros inválida
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 00:46:51
+
+Error: El nombre no puede ser el mismo en una modificación
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 00:48:32
+
+Error: El nombre no puede ser el mismo en una modificación
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 01:18:21
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 01:18:26
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:22:16
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:22:28
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:27:13
+
+Error: Hay errores en la carga del formulario
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:27:26
+
+Error: Hay errores en la carga del formulario

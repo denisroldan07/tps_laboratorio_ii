@@ -18,50 +18,178 @@ Origen del Error: ModificarPasajero
 Date: 6/15/2022 4:44:53 AM
 
 Error: Input string was not in a correct format.
-Origen del Error: form Inicio
+Origen del Error: ModificarPasajero
 
-Date: 6/18/2022 9:26:09 PM
+Date: 10/7/2022 18:53:19
 
-Error: Index was outside the bounds of the array.
-Origen del Error: form Inicio
-
-Date: 6/18/2022 9:27:01 PM
-
-Error: Index was outside the bounds of the array.
-Origen del Error: form Inicio
-
-Date: 6/18/2022 9:30:15 PM
-
-Error: Index was outside the bounds of the array.
-Origen del Error: form Inicio
-
-Date: 6/18/2022 9:30:57 PM
-
-Error: Index was outside the bounds of the array.
+Error: An item with the same key has already been added. Key: 3
 Origen del Error: CargarPasajero
 
-Date: 6/18/2022 9:51:22 PM
+Date: 18/7/2022 12:28:55
 
-Error: Violation of PRIMARY KEY constraint 'PK__Pasajero__D87608A6552DC347'. Cannot insert duplicate key in object 'dbo.Pasajero'. The duplicate key value is (38797877).
-The statement has been terminated.
+Error: Debe completar todos los campos del formulario
 Origen del Error: CargarPasajero
 
-Date: 6/19/2022 12:46:20 AM
+Date: 18/7/2022 13:02:23
 
-Error: Invalid column name 'dni'.
+Error: Debe completar todos los campos del formulario
 Origen del Error: CargarPasajero
 
-Date: 6/19/2022 12:49:34 AM
+Date: 18/7/2022 13:02:28
 
-Error: Invalid column name 'dni'.
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:02:41
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:24:15
+
+Error: Hay errores en la carga del formulario
+Origen del Error: CargarPasajero
+
+Date: 18/7/2022 13:24:22
+
+Error: Ingreso un Dni con la cantidad de numeros inválida
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:30:30
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:30:47
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:32:50
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:33:16
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:33:32
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:54:14
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vueloss.json
+Origen del Error: form Inicio
+
+Date: 19/7/2022 01:58:12
+
+Error: No se pudo leer el archivo: C:\Users\Denis\source\repos\TP3\FormApp\bin\Debug\net5.0-windows\VuelosDb\Vuelo.json
+Origen del Error: CargarPasajero
+
+Date: 19/7/2022 02:04:09
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 19/7/2022 02:04:26
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: BuscarPasajero
+
+Date: 20/7/2022 16:58:09
+
+Error: Debe completar todos los campos del formulario
+Origen del Error: CargarPasajero
+
+Date: 20/7/2022 17:07:31
+
+Error: Object reference not set to an instance of an object.
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 20/7/2022 17:17:30
+
+Error: El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 20/7/2022 17:21:28
+
+Error: Ingreso un Dni con la cantidad de numeros inválida
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 00:46:51
+
+Error: El nombre no puede ser el mismo en una modificación
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 00:48:32
+
+Error: El nombre no puede ser el mismo en una modificación
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 01:18:21
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 01:18:26
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:22:16
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:22:28
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:27:13
+
+Error: Hay errores en la carga del formulario
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 10:27:26
+
+Error: Hay errores en la carga del formulario
 Origen del Error: GeneracionDeTickets
 
-Date: 6/19/2022 10:50:20 PM
+Date: 26/7/2022 17:41:33
 
-Error: Invalid column name 'Id_Asiento'.
-Invalid column name 'Id_Avion'.
+Error: Invalid object name 'tickets'.
 Origen del Error: GeneracionDeTickets
 
-Date: 6/20/2022 3:19:21 AM
+Date: 26/7/2022 18:14:28
 
-Error: ExecuteReader requires an open and available Connection. The connection's current state is closed.
+Error: Invalid object name 'tickets'.
+Origen del Error: GeneracionDeTickets
+
+Date: 26/7/2022 18:15:55
+
+Error: Invalid object name 'tickets'.
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 26/7/2022 18:21:49
+
+Error: El dni del pasajero que quiere cargar ya se encuentra en este vuelo o en otro de nuestra aerolinea , por favor le recordamos que el dni tiene que ser único e irrepetible
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 27/7/2022 00:57:20
+
+Error: Hay errores en la carga del formulario
+Origen del Error: CargarPasajero - FormFormatErrorException
+
+Date: 27/7/2022 00:57:33
+
+Error: Hay errores en la carga del formulario
+Origen del Error: GestionTickets
+
+Date: 27/7/2022 01:07:40
+
+Error: Object reference not set to an instance of an object.

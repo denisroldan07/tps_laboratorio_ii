@@ -72,7 +72,7 @@ namespace FormApp
             catch(FormFormatErrorException ex)
             {
                 new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero - FormFormatErrorException"));
-                MessageBox.Show("Ocurrio un error", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -95,9 +95,9 @@ namespace FormApp
             {
                 throw new FormFormatErrorException("Ingreso un Dni con la cantidad de numeros inválida");
             }
-            else if (txtBox_Nombre.Text == pasajeroOriginal.Nombre)
+            else if (txtBox_Nombre.Text == pasajeroOriginal.Nombre && txtBox_Apellido.Text == pasajeroOriginal.Apellido)
             {
-                throw new FormFormatErrorException("El nombre no puede ser el mismo en una modificación");
+                throw new FormFormatErrorException("Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)");
             }
             else
             {
@@ -169,9 +169,9 @@ namespace FormApp
             {
                 throw new FormFormatErrorException("Ingreso un Dni con la cantidad de numeros inválida");
             }
-            else if (txtBox_Nombre.Text == pasajeroOriginal.Nombre)
+            else if (txtBox_Nombre.Text == pasajeroOriginal.Nombre && txtBox_Apellido.Text == pasajeroOriginal.Apellido)
             {
-                throw new FormFormatErrorException("El nombre no puede ser el mismo en una modificación");
+                throw new FormFormatErrorException("Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)");
             }
             else
             {

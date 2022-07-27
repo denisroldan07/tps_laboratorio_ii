@@ -30,6 +30,7 @@ namespace FormApp
         private void InitializeComponent()
         {
             this.panelSide = new System.Windows.Forms.Panel();
+            this.btn_Salir = new System.Windows.Forms.Button();
             this.btn_EliminarPasajero = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_ModificarPasajero = new System.Windows.Forms.Button();
@@ -38,7 +39,7 @@ namespace FormApp
             this.panelHeader = new System.Windows.Forms.Panel();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.btn_Salir = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -59,6 +60,21 @@ namespace FormApp
             this.panelSide.Size = new System.Drawing.Size(220, 425);
             this.panelSide.TabIndex = 0;
             // 
+            // btn_Salir
+            // 
+            this.btn_Salir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_Salir.FlatAppearance.BorderSize = 0;
+            this.btn_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Salir.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_Salir.ForeColor = System.Drawing.Color.White;
+            this.btn_Salir.Location = new System.Drawing.Point(0, 382);
+            this.btn_Salir.Name = "btn_Salir";
+            this.btn_Salir.Size = new System.Drawing.Size(220, 40);
+            this.btn_Salir.TabIndex = 4;
+            this.btn_Salir.Text = "Salir";
+            this.btn_Salir.UseVisualStyleBackColor = true;
+            this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
+            // 
             // btn_EliminarPasajero
             // 
             this.btn_EliminarPasajero.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -77,10 +93,12 @@ namespace FormApp
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::FormApp.Properties.Resources.avion2;
             this.pictureBox1.Location = new System.Drawing.Point(47, 16);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 112);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -132,6 +150,7 @@ namespace FormApp
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.DarkGray;
+            this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.btn_Cerrar);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -141,6 +160,7 @@ namespace FormApp
             // 
             // btn_Cerrar
             // 
+            this.btn_Cerrar.BackColor = System.Drawing.Color.IndianRed;
             this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_Cerrar.FlatAppearance.BorderSize = 0;
             this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -151,7 +171,7 @@ namespace FormApp
             this.btn_Cerrar.Size = new System.Drawing.Size(30, 30);
             this.btn_Cerrar.TabIndex = 3;
             this.btn_Cerrar.Text = "X";
-            this.btn_Cerrar.UseVisualStyleBackColor = true;
+            this.btn_Cerrar.UseVisualStyleBackColor = false;
             this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
             // 
             // panelMain
@@ -162,20 +182,15 @@ namespace FormApp
             this.panelMain.Size = new System.Drawing.Size(557, 425);
             this.panelMain.TabIndex = 2;
             // 
-            // btn_Salir
+            // label1
             // 
-            this.btn_Salir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_Salir.FlatAppearance.BorderSize = 0;
-            this.btn_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Salir.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_Salir.ForeColor = System.Drawing.Color.White;
-            this.btn_Salir.Location = new System.Drawing.Point(0, 382);
-            this.btn_Salir.Name = "btn_Salir";
-            this.btn_Salir.Size = new System.Drawing.Size(220, 40);
-            this.btn_Salir.TabIndex = 4;
-            this.btn_Salir.Text = "Salir";
-            this.btn_Salir.UseVisualStyleBackColor = true;
-            this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(306, 21);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Gestion de pasajeros - Denis Roldan 2A";
             // 
             // Inicio
             // 
@@ -192,6 +207,7 @@ namespace FormApp
             this.panelSide.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -208,6 +224,7 @@ namespace FormApp
         private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.Button btn_EliminarPasajero;
         private System.Windows.Forms.Button btn_Salir;
+        private System.Windows.Forms.Label label1;
     }
 }
 
