@@ -15,8 +15,8 @@ namespace FormApp
 {
     public partial class GestionarTickets : Form
     {
-        public static Tickets ticketAEliminar;
-        public static List<Tickets> tickets;
+        public Tickets ticketAEliminar;
+        public List<Tickets> tickets;
         public GestionarTickets()
         {
             InitializeComponent();
@@ -32,9 +32,11 @@ namespace FormApp
                 evento.OntiempoFinalizado += NotificarCargaDeTickets;
                 evento.OntiempoRestante += MostrarTiempoRestante;
 
-                evento.MensajeTiempoFinalizado(3); 
+                evento.MensajeTiempoFinalizado(3);
+                tickets = new List<Tickets>();
                 tickets = await CargarDataGrid();
                 dgv_Tickets.DataSource = tickets;
+                dgv_Tickets.ClearSelection();
                 label2.Hide();
             }
             catch (Exception ex)
@@ -90,22 +92,30 @@ namespace FormApp
             {
                 if (dgv_Tickets.CurrentRow.DataBoundItem == null)
                 {
-                    MessageBox.Show("Debe seleccionarse una fila que no este vacia", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception("Atencion debe seleccionarse una fila que no este vacia");
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea eliminar de la base:\n{ticketAEliminar.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.Yes)
+                    if (ticketAEliminar is null)
+                    {
+                        MessageBox.Show("Antes de eliminar tiene que seleccionar un ticket", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
                     {
 
-                        TicketDAO ticketDAO = new TicketDAO();
-                        ticketDAO.Eliminar(ticketAEliminar);
-                        MessageBox.Show("Ticket eliminado exitosamente", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dgv_Tickets.DataSource = await CargarDataGrid();
+                        DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea eliminar de la base:\n{ticketAEliminar.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            TicketDAO ticketDAO = new TicketDAO();
+                            ticketDAO.Eliminar(ticketAEliminar);
+                            MessageBox.Show("Ticket eliminado exitosamente", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgv_Tickets.DataSource = await CargarDataGrid();
+                            dgv_Tickets.ClearSelection();
+                            ticketAEliminar = null;
 
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -120,7 +130,11 @@ namespace FormApp
             {
                 if (dgv_Tickets.SelectedRows.Count > 0)
                 {
-                    ticketAEliminar = (Tickets)dgv_Tickets.CurrentRow.DataBoundItem;
+                    Tickets auxTicket = (Tickets)dgv_Tickets.CurrentRow.DataBoundItem;
+                    if(auxTicket is not null)
+                    {
+                        ticketAEliminar = new Tickets(auxTicket.Dni, auxTicket.Nombre, auxTicket.Apellido, auxTicket.Asiento, auxTicket.Destino, auxTicket.IdAvion, auxTicket.Fecha);
+                    }
                 }
             }
             catch (Exception ex)

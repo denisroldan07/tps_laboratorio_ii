@@ -158,3 +158,33 @@ Origen del Error: CargarPasajero - FormFormatErrorException
 Date: 26/7/2022 10:27:26
 
 Error: Hay errores en la carga del formulario
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 3/8/2022 12:34:21
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: ModificarPasajero
+
+Date: 3/8/2022 17:26:35
+
+Error: An item with the same key has already been added. Key: 4
+Origen del Error: ModificarPasajero
+
+Date: 3/8/2022 17:30:24
+
+Error: An item with the same key has already been added. Key: 4
+Origen del Error: ModificarPasajero - FormFormatErrorException
+
+Date: 3/8/2022 19:08:24
+
+Error: Para realizar una modificación se debe realizar al menos un cambio en el pasajero (nombre o apellido)
+Origen del Error: EliminarPasajero
+
+Date: 4/8/2022 15:33:34
+
+Error: Object reference not set to an instance of an object.
+Origen del Error: EliminarPasajero
+
+Date: 4/8/2022 15:59:07
+
+Error: Object reference not set to an instance of an object.

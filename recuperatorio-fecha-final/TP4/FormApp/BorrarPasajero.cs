@@ -8,8 +8,8 @@ namespace FormApp
 {
     public partial class BorrarPasajero : Form
     {
-        public static int idVuelo;
-        public static Pasajero pasajeroAEliminar = new Pasajero(); 
+        public int idVuelo;
+        public Pasajero pasajeroAEliminar; 
        
         public BorrarPasajero()
         {
@@ -36,21 +36,30 @@ namespace FormApp
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea eliminar del vuelo a:\n{pasajeroAEliminar.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if(dialogResult == DialogResult.Yes)
+                    if (pasajeroAEliminar is null)
                     {
-                        Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
-                        foreach (KeyValuePair<int,Pasajero> pasajero in avionAux.Pasajeros)
+                        MessageBox.Show("Antes de eliminar tiene que seleccionar un pasajero", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea eliminar del vuelo a:\n{pasajeroAEliminar.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if(pasajero.Value.Dni == pasajeroAEliminar.Dni)
+                            Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
+                            foreach (KeyValuePair<int, Pasajero> pasajero in avionAux.Pasajeros)
                             {
-                                avionAux.Pasajeros.Remove(pasajero.Key);
-                                avionAux.Pasajeros.Add(pasajero.Key, null);
-                                break;
+                                if (pasajero.Value.Dni == pasajeroAEliminar.Dni)
+                                {
+                                    avionAux.Pasajeros.Remove(pasajero.Key);
+                                    avionAux.Pasajeros.Add(pasajero.Key, null);
+                                    break;
+                                }
                             }
+                            MessageBox.Show($"El pasajero {pasajeroAEliminar.ToString()}\neliminado exitosamente !", "BAJA REALIZADA EXITOSAMENTE!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GenerarInterfaceForm();
+                            MostrarListaDePasajeros(idVuelo);
+                            pasajeroAEliminar = null;
                         }
-                        MessageBox.Show($"El pasajero {pasajeroAEliminar.ToString()}\neliminado exitosamente !", "BAJA REALIZADA EXITOSAMENTE!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MostrarListaDePasajeros(idVuelo);
                     }
                 }
             }
@@ -143,7 +152,7 @@ namespace FormApp
             }
             else
             {
-                listBox.Items.Add($"Asientos: {4 - count}");
+                listBox.Items.Add($"Asientos restantes: {4 - count}");
             }
         }
 
@@ -154,10 +163,12 @@ namespace FormApp
 
             ObtenerPasajerosDataGrid(pasajeros, avion);
 
-            btn_Atras.Show();
+            pasajeros.Sort(Pasajero.Comparar);
             btn_EliminarPasajero.Show();
+            btn_Atras.Show();
             dgv_Pasajeros.Show();
             dgv_Pasajeros.DataSource = pasajeros;
+            dgv_Pasajeros.ClearSelection();
         }
 
         private static void ObtenerPasajerosDataGrid(List<Pasajero> pasajeros, Avion avion)
@@ -195,8 +206,12 @@ namespace FormApp
             {
                 if (dgv_Pasajeros.SelectedRows.Count > 0)
                 {
-                    pasajeroAEliminar = (Pasajero)dgv_Pasajeros.CurrentRow.DataBoundItem;
-                }
+                    Pasajero aux = (Pasajero)dgv_Pasajeros.CurrentRow.DataBoundItem;
+                    if (aux is not null)
+                    {
+                        pasajeroAEliminar = new Pasajero(aux.Nombre, aux.Apellido, aux.Dni, aux.IdAsiento);
+                    }
+                } 
             }
             catch (Exception ex)
             {

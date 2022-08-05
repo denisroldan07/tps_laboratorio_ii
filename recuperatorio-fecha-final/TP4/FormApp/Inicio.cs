@@ -35,7 +35,7 @@ namespace FormApp
             }
             catch (Exception ex)
             {
-                new Text().Save("logError.txt", LogErrors.LogError(ex, "form Inicio"));
+                new Text().Save("logError.txt", LogErrors.LogError(ex,"form Inicio"));
                 MessageBox.Show($"Error fatal.Por favor comunicarse con el área de sistemas", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }

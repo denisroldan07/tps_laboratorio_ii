@@ -9,9 +9,9 @@ namespace FormApp
 {
     public partial class ModificarPasajero : Form
     {
-        public static int idVuelo;
-        public static Pasajero pasajeroOriginal = new Pasajero();
-        public static Pasajero pasajeroAModificar = new Pasajero();
+        public int idVuelo;
+        public Pasajero pasajeroOriginal = new Pasajero();
+        public Pasajero pasajeroAModificar = new Pasajero();
 
         public ModificarPasajero()
         {
@@ -101,13 +101,10 @@ namespace FormApp
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea modificar: {pasajeroOriginal.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea modificar:\n{pasajeroOriginal.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    pasajeroAModificar.Nombre = txtBox_Nombre.Text;
-                    pasajeroAModificar.Apellido = txtBox_Apellido.Text;
-                    pasajeroAModificar.Dni = long.Parse(txtBox_DNI.Text);
-                    pasajeroAModificar.IdAsiento = pasajeroOriginal.IdAsiento;
+                    pasajeroAModificar = new Pasajero(txtBox_Nombre.Text, txtBox_Apellido.Text, long.Parse(txtBox_DNI.Text), pasajeroOriginal.IdAsiento);
 
                     Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
                     foreach (var pasajero in avionAux.Pasajeros)
@@ -116,7 +113,7 @@ namespace FormApp
                         {
                             continue;
                         }
-                        
+
                         if (pasajero.Value.Dni == pasajeroAModificar.Dni)
                         {
                             //Una vez que encuentro al pasajero, cambio su valor a null dejando libre el asiento y busco la key del asiento a donde voy a mover al pasajero.
@@ -144,8 +141,6 @@ namespace FormApp
                     }
 
                     new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
-                    TicketDAO ticketDAO = new TicketDAO();
-                    ticketDAO.Guardar(pasajeroAModificar, Vuelos.ObtenerAvion(idVuelo));
                     MessageBox.Show($"El pasajero {pasajeroOriginal.ToString()} \nfue modificado exitosamente con la siguiente informacion:\n{pasajeroAModificar.ToString()}", "MODIFICACIÓN EXITOSA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MostrarListaDePasajeros(idVuelo);
                     OcultarBotones();
@@ -180,10 +175,7 @@ namespace FormApp
                 DialogResult dialogResult = MessageBox.Show($"Esta seguro que desea modificar: {pasajeroOriginal.ToString()} ?", "ATENCIÓN!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    pasajeroAModificar.Nombre = txtBox_Nombre.Text;
-                    pasajeroAModificar.Apellido = txtBox_Apellido.Text;
-                    pasajeroAModificar.Dni = long.Parse(txtBox_DNI.Text);
-                    pasajeroAModificar.IdAsiento = int.Parse(cmb_AsientosLibres.SelectedItem.ToString());
+                    pasajeroAModificar = new Pasajero(txtBox_Nombre.Text, txtBox_Apellido.Text, long.Parse(txtBox_DNI.Text), int.Parse(cmb_AsientosLibres.SelectedItem.ToString()));
 
                     Avion avionAux = Vuelos.ObtenerAvion(idVuelo);
                     foreach (var pasajero in avionAux.Pasajeros)
@@ -220,11 +212,10 @@ namespace FormApp
                     }
 
                     new Json<List<Avion>>().Save("Vuelos.json", Vuelos.vuelos);
-                    TicketDAO ticketDAO = new TicketDAO();
-                    ticketDAO.Guardar(pasajeroAModificar, Vuelos.ObtenerAvion(idVuelo));
                     MessageBox.Show($"El pasajero {pasajeroOriginal.ToString()} \nfue modificado exitosamente con la siguiente informacion:\n{pasajeroAModificar.ToString()}", "MODIFICACIÓN EXITOSA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MostrarListaDePasajeros(idVuelo);
                     OcultarBotones();
+
                 }
                 else
                 {
@@ -349,10 +340,7 @@ namespace FormApp
                         Pasajero pasajero = (Pasajero)dgv_Pasajeros.CurrentRow.DataBoundItem;
                         Avion avion = Vuelos.ObtenerAvion(idVuelo);
                         MostrarBotonesModificacionPasajero();
-                        pasajeroOriginal.Nombre = pasajero.Nombre;
-                        pasajeroOriginal.Apellido = pasajero.Apellido;
-                        pasajeroOriginal.Dni = pasajero.Dni;
-                        pasajeroOriginal.IdAsiento = pasajero.IdAsiento;
+                        pasajeroOriginal = new Pasajero(pasajero.Nombre, pasajero.Apellido, pasajero.Dni, pasajero.IdAsiento);
 
                         txtBox_DNI.Text = pasajero.Dni.ToString();
                         txtBox_DNI.Enabled = false;
@@ -372,7 +360,6 @@ namespace FormApp
                             cmb_AsientosLibres.Enabled = false;
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -380,7 +367,6 @@ namespace FormApp
                 new Text().Save("logError.txt", LogErrors.LogError(ex, "ModificarPasajero"));
                 MessageBox.Show("Ocurrio un error", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
         public List<int> DevolverAsientosVacios(Avion avion)

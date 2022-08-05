@@ -42,4 +42,4 @@ C:\Users\denis\source\repos\TP3\Entidades\obj\Debug\net5.0\Entidades.csproj.Copy
 C:\Users\denis\source\repos\TP3\Entidades\obj\Debug\net5.0\Entidades.dll
 C:\Users\denis\source\repos\TP3\Entidades\obj\Debug\net5.0\Entidades.pdb
 C:\Users\denis\source\repos\TP3\Entidades\obj\Debug\net5.0\ref\Entidades.dll
-C:\Users\Denis\source\repos\TP3\Entidades\bin\Debug\net5.0\ref\Entidades.dll
+C:\Users\Denis\source\repos\TP3\Entidades\obj\Debug\net5.0\refint\Entidades.dll

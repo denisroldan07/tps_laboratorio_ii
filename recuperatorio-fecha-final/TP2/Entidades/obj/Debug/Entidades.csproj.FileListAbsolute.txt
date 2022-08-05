@@ -41,3 +41,9 @@ C:\Users\Denis\source\repos\TP2\Entidades\obj\Debug\Entidades.csproj.AssemblyRef
 C:\Users\Denis\source\repos\TP2\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\Denis\source\repos\TP2\Entidades\obj\Debug\Entidades.dll
 C:\Users\Denis\source\repos\TP2\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Denis\Desktop\tps_laboratorio_ii\tps_laboratorio_ii\recuperatorio-fecha-final\TP2\Entidades\bin\Debug\Entidades.dll
+C:\Users\Denis\Desktop\tps_laboratorio_ii\tps_laboratorio_ii\recuperatorio-fecha-final\TP2\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Denis\Desktop\tps_laboratorio_ii\tps_laboratorio_ii\recuperatorio-fecha-final\TP2\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\Denis\Desktop\tps_laboratorio_ii\tps_laboratorio_ii\recuperatorio-fecha-final\TP2\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Denis\Desktop\tps_laboratorio_ii\tps_laboratorio_ii\recuperatorio-fecha-final\TP2\Entidades\obj\Debug\Entidades.dll
+C:\Users\Denis\Desktop\tps_laboratorio_ii\tps_laboratorio_ii\recuperatorio-fecha-final\TP2\Entidades\obj\Debug\Entidades.pdb
