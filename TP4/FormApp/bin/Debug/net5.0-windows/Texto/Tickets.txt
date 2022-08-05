@@ -1,0 +1,20 @@
+Numero de vuelo: 1
+Destino: Cordoba
+Pasajero: Jose DelRio 
+DNI: 11123456
+Numero de vuelo: 1
+Destino: Cordoba
+Pasajero: Jose DelRio 
+DNI: 11123456
+Numero de vuelo: 1
+Destino: Cordoba
+Pasajero: Denis Roldan 
+DNI: 38797877
+Numero de vuelo: 1
+Destino: Cordoba
+Pasajero: Denis Roldan 
+DNI: 38797877
+Numero de vuelo: 1
+Destino: Cordoba
+Pasajero: Milagros Patane 
+DNI: 37860480
